@@ -16,7 +16,7 @@
                 </div>
                 <div class="form-group">
                     <label class="">Identification No:</label>
-                    <input type="text" class="form-control form-control-xs" v-model="user.identification_no">
+                    <input type="text" class="form-control form-control-xs" v-model="user.matric_no">
                 </div>
                 <div class="form-group">
                     <label class="">Telephone:</label>

@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="card card-box">
                 <div class="card-head">
-                    <header>Result Filling</header>
+                    <header>Result Filling hhhghghg</header>
                 </div>
                 <div class="card-body" id="bar-parent">
                     <div class="col-md-12">
@@ -12,7 +12,14 @@
                             <tr>
                                 <td>
                                     Year:
-                                    <input type="text" class="form-control" v-model="year" placeholder="2017/2018">
+
+                                    <select name="" id="" class="form-control" v-model="year">
+                                        <option value="" selected>Session</option>
+                                        <option :value="session.year" v-for="session in sessions">
+                                            {{ session.year  }}
+                                        </option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control" v-model="year" placeholder="2017/2018"> -->
                                 </td>
 
                                 <td>
@@ -35,7 +42,7 @@
                             <tr v-for="courseRegisteredDetails in registeredCourses">
                                 <span v-for="student in students">
                                     <span v-if="student.id == courseRegisteredDetails.student_id">
-                                        <td><a @click="viewResultForm(courseRegisteredDetails.student_id)">{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
+                                        <td><a @click="viewResultForm(courseRegisteredDetails.student_id)">{{student.firstname}} &emsp; {{student.matric_no}}</a></td>
                                     </span>
                                 </span>
                             </tr>
@@ -107,7 +114,7 @@
                     <tr v-for="courseRegisteredDetails in registeredCourses">
                         <span v-for="student in students">
                             <span v-if="student.id == courseRegisteredDetails.student_id">
-                                <td><a @click="viewResultForm(courseRegisteredDetails.student_id)">{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
+                                <td><a @click="viewResultForm(courseRegisteredDetails.student_id)">{{student.firstname}} &emsp; {{student.matric_no}}</a></td>
                             </span>
                         </span>
                     </tr>
@@ -147,6 +154,7 @@
         data(){
             return {
                 students :'',
+                sessions :'',
                 resultEditor:false,
                 listOfCourses:{},
                 semester:'',
@@ -171,6 +179,19 @@
                         }
                     })
             },
+            fetchSessions() {
+            axios.get('/student/course-registration-session')
+                .then(response => {
+                    var _response = response.data;
+                    console.log(_response.data);
+                    if (_response.status === 0) {
+
+                        this.sessions = _response.data;
+                        console.log("hello");
+
+                    }
+                })
+        },
 
             getCourses(){
                 axios.get('/course/view')
@@ -248,6 +269,8 @@
         mounted(){
             this.fetchStudents();
             this.getCourses();
+            this.fetchSessions();
+
         },
 
         watch: {

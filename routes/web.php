@@ -18,6 +18,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');*/
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (){
    return redirect()->route('login');
@@ -89,7 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'student'], function(){
         Route::get('add', 'StudentController@add')->name('student.add');
-        Route::post('add', 'StudentController@postAdd');
+        Route::post('add', 'StudentController@postAdd')->name('student.add');
         Route::get('edit', 'StudentController@edit')->name('student.edit');
         Route::post('edit', 'StudentController@postEdit');
         Route::post('view', 'StudentController@viewStudent');
@@ -148,6 +149,7 @@ Route::group(['middleware' => 'auth'], function () {
         });
         Route::get('view-selected-result', 'ResultController@viewForStudent')->name('student-view-result');
         Route::get('profile', 'StudentController@viewStudentProfile')->name('student-profile');
+        Route::get('course-registration-session', 'UserController@getSession');
 
 
     });

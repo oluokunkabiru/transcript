@@ -23,7 +23,7 @@ class AuthController extends Controller
                 if($request->hasFile('photo')){
                    try{
                        $image = $request->file('photo');
-                       $imageName = OptimiseImage($image, $request['identification_no']);
+                       $imageName = OptimiseImage($image, $request['matric_no']);
                        $request['image'] = $imageName;
                    }
                    catch (\Exception $e){
@@ -61,14 +61,21 @@ class AuthController extends Controller
     public function postLogin(Request $request, UserSetting $userSetting)
     {
         $data = $request->all();
-        try{
+        // try{
             if (auth()->attempt(['email' => $data['email'], 'password' => $data['password'], 'is_active' => true])) {
+                
+                // return auth()->user()->user_type;
                 if (auth()->user()->user_type == 1 || auth()->user()->user_type == 2)
                 {
+
+                //    return auth()->user()->user_type;
                     //Saving the theme value into the session
-                    $userSetting = $userSetting->view(auth()->id());
-                    $userSetting = $userSetting[0]->theme;
+                    // return dd($userSetting);
+                    $userSetting =  auth()->user()->user_type; //$userSetting->view(auth()->id());
+                    // return dd($userSetting);
+                    // $userSetting = $userSetting[0]->theme;
                     session(['theme' => $userSetting]);
+                    // return $userSetting;
                     return redirect()->intended(route('home'));
                 }
 
@@ -81,12 +88,12 @@ class AuthController extends Controller
                     return 'Professor';
                 }
             }
-            return redirect()->back()->with('error', 'Identification No and Password Combination Incorrect')->withInput();
-        } catch (\Exception $e)
-        {
-            /*Send us a mail */
-            return redirect()->back()->with('error', 'Could not sign you in at the moment. Please try again...');
-        }
+        //     return redirect()->back()->with('error', 'Identification No and Password Combination Incorrect')->withInput();
+        // } catch (\Exception $e)
+        // {
+        //     /*Send us a mail */
+        //     return redirect()->back()->with('error', 'Could not sign you in at the moment. Please try again...');
+        // }
     }
 
     public function logout()

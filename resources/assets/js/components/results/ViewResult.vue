@@ -38,7 +38,7 @@
                             <tr v-for="resultDetails in allResults">
                                 <span v-for="student in students">
                                     <span v-if="student.id == resultDetails.student_id">
-                                        <td><a href="#" @click.prevent="viewResult(resultDetails.student_id)">{{student.lastname}}&nbsp;{{student.firstname}} &emsp; {{student.identification_no}}</a></td>
+                                        <td><a href="#" @click.prevent="viewResult(resultDetails.student_id)">{{student.lastname}}&nbsp;{{student.firstname}} &emsp; {{student.matric_no}}</a></td>
                                     </span>
                                 </span>
                             </tr>
@@ -48,7 +48,7 @@
                             <div id="printMe">
                                 <label>
                                     <span v-for="student in students">
-                                        <span v-if="student.id == selectedStudentId"><h4><strong><h5>Name:</h5> {{student.lastname}} {{student.firstname}} &emsp; <br><h5>Identification No:</h5> {{student.identification_no}}</strong></h4></span>
+                                        <span v-if="student.id == selectedStudentId"><h4><strong><h5>Name:</h5> {{student.lastname}} {{student.firstname}} &emsp; <br><h5>Identification No:</h5> {{student.matric_no}}</strong></h4></span>
                                     </span>
                                     <span>
                                         <h4><strong><h5>Year: </h5> {{year}}<h5>Semester: </h5> {{semester}}</strong></h4>

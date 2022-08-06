@@ -20,7 +20,7 @@ class CreateStudentsTable extends Migration
             $table->string('middlename');
             $table->string('tel_no')->nullable();
             $table->string('email');
-            $table->string('identification_no');
+            $table->string('matric_no');
             $table->integer('department_id');
             $table->integer('staff_id');
             $table->softDeletes();

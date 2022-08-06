@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label for="">College Name </label>
-                        <input type="text" v-model="data.college_name" class="form-control" :disabled=!enabled>
+                        <input type="text" v-model="data.short_code" class="form-control" :disabled=!enabled>
                     </div>
                     <div class="form-group">
                         <button type="button" class="btn btn-default"  @click="$modal.hide('myModal')">Close</button>
@@ -83,7 +83,7 @@
                                                                 </td>
                                                                 <td class="left">{{++index}}</td>
                                                                 <td>{{department.name}}</td>
-                                                                <td>{{department.college_name}}</td>
+                                                                <td>{{department.short_code}}</td>
                                                                 <td>
                                                                     <a class="btn btn-primary btn-xs" id="modal_launcher" @click="launch(department)">
                                                                         <i class="fa fa-pencil"></i>

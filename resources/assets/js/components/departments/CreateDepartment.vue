@@ -21,7 +21,7 @@
                                     <span class="required"> * </span>
                                 </label>
                                 <div class="col-md-5">
-                                    <input type="text" v-model="department.college_name" data-required="1" placeholder="enter college name" class="form-control input-height" /> </div>
+                                    <input type="text" v-model="department.short_code" data-required="1" placeholder="enter college name" class="form-control input-height" /> </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-md-3">Head Of Department

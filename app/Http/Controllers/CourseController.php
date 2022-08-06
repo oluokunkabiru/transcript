@@ -70,6 +70,7 @@ class CourseController extends Controller
         }
     }
 
+    
     public function viewCourse(Request $request, Course $course)
     {
         try

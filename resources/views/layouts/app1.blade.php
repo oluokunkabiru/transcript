@@ -44,6 +44,11 @@
     <link href="/css/pages/inbox.min.css" rel="stylesheet" type="text/css" />
     <!-- favicon -->
     {{--<link rel="shortcut icon" href="../assets/img/favicon.ico" />--}}
+    <style>
+        .help-block{
+            color:red;
+        }
+    </style>
 </head>
 <!-- END HEAD -->
 @if(session('theme') == 0)
@@ -265,7 +270,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link nav-toggle">
                                 <i class="material-icons">email</i>
                                 <span class="title">Email</span>
@@ -289,7 +294,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item">
                             <a href="#" class="nav-link nav-toggle">
@@ -413,7 +418,7 @@
     <!-- end page container -->
     <!-- start footer -->
     <div class="page-footer">
-        <div class="page-footer-inner"> 2017 &copy; RMS
+        <div class="page-footer-inner"> {{ date('Y') }} &copy; Transcript Management System
         </div>
         <div class="scroll-to-top">
             <i class="icon-arrow-up"></i>

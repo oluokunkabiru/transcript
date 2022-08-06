@@ -16,7 +16,13 @@
                             <tr>
                                 <td>
                                     Year:
-                                    <input type="text" class="form-control" v-model="year" placeholder="2017/2018">
+                                     <select name="" id="" class="form-control" v-model="year">
+                                        <option value="" selected>Session</option>
+                                        <option :value="session.year" v-for="session in sessions">
+                                            {{ session.year  }}
+                                        </option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control" v-model="year" placeholder="2017/2018"> -->
                                 </td>
 
                                 <td>
@@ -38,7 +44,7 @@
                             <tr v-for="results in allResults">
                                 <span v-for="student in students">
                                     <span v-if="student.id == results.student_id">
-                                        <td><a href="#" @click="viewResultForm(results)">{{student.lastname}} {{student.firstname}} &emsp; {{student.identification_no}}</a></td>
+                                        <td><a href="#" @click="viewResultForm(results)">{{student.lastname}} {{student.firstname}} &emsp; {{student.matric_no}}</a></td>
                                     </span>
                                 </span>
                             </tr>
@@ -91,6 +97,7 @@
             return {
                 authUser:'',
                 students :'',
+                sessions :'',
                 resultEditor:false,
                 listOfCourses:{},
                 semester:'',
@@ -137,7 +144,19 @@
                         }
                     })
             },
+            fetchSessions() {
+                        axios.get('/student/course-registration-session')
+                            .then(response => {
+                                var _response = response.data;
+                                console.log(_response.data);
+                                if (_response.status === 0) {
 
+                                    this.sessions = _response.data;
+                                    console.log("hello");
+
+                                }
+                            })
+                    },
             fetchResults(){
                 var params = {
                     semester: this.semester,
@@ -214,6 +233,8 @@
             this.getAuthUser();
             this.fetchStudents();
             this.getCourses();
+            this.fetchSessions();
+
         },
 
         watch: {

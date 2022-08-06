@@ -28,6 +28,8 @@ class ResultController extends Controller
 
     public function add(Request $request, Result $resultObject)
     {
+
+        
         try
         {
             $result = $resultObject->createNew($request->all());

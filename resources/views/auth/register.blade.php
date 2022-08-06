@@ -61,6 +61,7 @@
                                         <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                             <input class="mdl-textfield__input" type = "text" name= "firstname">
                                             <label class="mdl-textfield__label">First Name</label>
+                                        
                                         </div>
                                     </div>
                                     <div class="col-lg-6 p-t-20">
@@ -77,7 +78,7 @@
                                     </div>
                                     <div class="col-lg-6 p-t-20">
                                         <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class="mdl-textfield__input" type = "text" name="identification_no">
+                                            <input class="mdl-textfield__input" type = "text" name="matric_no">
                                             <label class="mdl-textfield__label" >Identification No</label>
                                         </div>
                                     </div>

@@ -23,10 +23,12 @@ class HomeController extends Controller
 
     public function index(User $user,  Course $course, Department $department, UserSetting $userSetting)
     {
+        // return "hello";
+        
         if(auth()->user()->user_type != 1 && auth()->user()->user_type != 2){
             return view('auth.login');
         }
-
+                    
         $courses = $course->viewAll();
         $users = $user->viewAll();
         $departments = $department->viewAll();
@@ -74,13 +76,13 @@ class HomeController extends Controller
             'courses' => $courses,
             'student' => $student,
             'admin' => $admin,
-            'professor' => $professor,
+                                                                'professor' => $professor,
             'adminCount' => $adminCount,
             'studentCount' => $studentCount,
             'professorCount' => $professorCount,
             'courseCount' => $courseCount,
         ];
-
+// return $data;
 
         return view('home')->with('data',$data);
     }
@@ -92,11 +94,20 @@ class HomeController extends Controller
 
     public function studentHome()
     {
-        return view('studentHome', ['id' => auth()->user()->identification_no,]);
+        return view('studentHome', ['id' => auth()->user()->matric_no,]);
     }
 
     public function auth()
     {
         return apiSuccess(auth()->user());
     }
+
+     // "dev": "npm run development",
+        // "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        // "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        // "watch-poll": "npm run watch -- --watch-poll",
+        // "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        // "prod": "npm run production",
+        // "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+ 
 }

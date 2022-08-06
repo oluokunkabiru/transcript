@@ -16,9 +16,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'firstname', 'middlename', 'lastname', 'gender', 'DOB', 'tel_no', 'email', 'address', 'password',
-        'image', 'identification_no', 'department_id', 'user_type', 'staff_id', 'is_active'
+        'image', 'matric_no', 'department_id', 'user_type', 'staff_id', 'is_active'
     ];
-
+    public $dept;
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -30,14 +30,22 @@ class User extends Authenticatable
 
     public function createNew($data)
     {
-        $existingData = $this->where('identification_no', '=', $data['identification_no'])->first();
+        $this->setDepartment($data['department_id']);
+        $data['matric_no'] =  $this->getDepartment()."/".date("Y") ."/". $this->getLastId();
+        // return $data['matric_no'];
+        $existingData = $this->where('matric_no', '=', $data['matric_no'])->first();
+        // return "hello here";
         if($existingData === null){
             isset($data['staff_id']) ? $data['staff_id'] : $data['staff_id'] = auth()->id();
             $data['password'] = isset($data['password']) ? bcrypt($data['password']) : bcrypt('secret');
+                // return "hi";
             if(!isset($data['image'])){
-                $data['image'] = $data['identification_no'].'.jpg';
+                $data['image'] = $data['matric_no'].'.jpg';
             }
+            // return $data;
             return $this->create($data);
+        }else{
+            return $existingData;
         }
     }
 
@@ -70,6 +78,39 @@ class User extends Authenticatable
     {
         return $this->all();
     }
+    public function setDepartment($id){
+        $department = Department::find($id);
+        $code = $department->short_code;
+        $this->dept = $code;
+    }
+
+    public function getLastId(){
+        $student = User::latest()->first();
+        if ($student){
+
+
+        return
+        str_pad(($student->id?$student->id:0)+1, 4, '0', STR_PAD_LEFT) ;
+        }else{
+          return  str_pad(0+1, 4, '0', STR_PAD_LEFT) ;
+
+        }
+    }
+
+    public function getDepartment(){
+        return $this->dept;
+    }
+
+    public function setDepartmentIdAttribute($value)
+    {
+        $this->setDepartment($value);
+        $this->attributes['department_id'] = $value  ;
+    }
+    public function setMatricNoAttribute($value)
+    {
+        $this->attributes['matric_no'] = $this->getDepartment()."/".date("Y") ."/". $this->getLastId() ;
+    }
+
 
     public function updateUser($data)
     {
@@ -83,7 +124,7 @@ class User extends Authenticatable
                 'tel_no' => $data['tel_no'],
                 'email' => $data['email'],
                 'address' => $data['address'],
-                'identification_no' => $data['identification_no'],
+                'matric_no' => $data['matric_no'],
                 'image' => $data['image'],
                 'department_id' => $data['department_id'],
                 'user_type' => $data['user_type'],

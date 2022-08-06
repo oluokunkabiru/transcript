@@ -164,7 +164,7 @@
                                         <tr>
                                             <td>{{$i++}}</td>
                                             <td>{{$students['lastname']}} {{$students['firstname']}}</td>
-                                            <td>{{$students['identification_no']}}</td>
+                                            <td>{{$students['matric_no']}}</td>
                                             <td>{{$students['created_at']}}</td>
                                             <td>
                                                 @if($students['gender'] == 'Male')
@@ -219,7 +219,7 @@
                                         <tr>
                                             <td>{{$i++}}</td>
                                             <td>{{$professor['lastname']}} {{$professor['firstname']}}</td>
-                                            <td>{{$professor['identification_no']}}</td>
+                                            <td>{{$professor['matric_no']}}</td>
                                             <td>{{$professor['created_at']}}</td>
                                             <td>
                                                 @if($students['gender'] == 'Male')

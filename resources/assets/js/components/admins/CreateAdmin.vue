@@ -35,7 +35,7 @@
                                     <span class="required"> * </span>
                                 </label>
                                 <div class="col-md-5">
-                                    <input type="text" v-model="admin.identification_no" data-required="1" placeholder="enter ID no" class="form-control input-height" /> </div>
+                                    <input type="text" v-model="admin.matric_no" data-required="1" placeholder="enter ID no" class="form-control input-height" /> </div>
                             </div>
                             <div class="form-group row">
                                 <label class="control-label col-md-3">Email

@@ -18,7 +18,7 @@ function apiSuccess($data, $msg = "Success", $meta = [])
     $responder['message'] = $msg;
     $responder['data'] = $data;
     $responder['meta'] = $meta;
-
+    // return $responder;
     return response()->json( $responder );
 }
 
@@ -32,9 +32,9 @@ function apiFailure($data, $msg = "An Error Occurred",  $code = 2)
     return response()->json($responder);
 }
 
-function OptimiseImage ($image,$identification_no){
+function OptimiseImage ($image,$matric_no){
     $extension = $image->getClientOriginalExtension();
-    $imageName = $identification_no.'.'.$extension;
+    $imageName = $matric_no.'.'.$extension;
 
     $newImage = Image::make($image->getRealPath())->resize(600,600);
     $newImage->save(public_path('/images/').$imageName, 60);

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('tel_no')->nullable();
             $table->string('email')->unique();
             $table->string('address');
-            $table->string('identification_no');
+            $table->string('matric_no');
             $table->string('password');
             $table->string('image');
             $table->integer('department_id')->nullable();

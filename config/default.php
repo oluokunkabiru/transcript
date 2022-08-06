@@ -5,9 +5,9 @@ return [
         'firstname' => 'Timothy',
         'lastname'   => 'Fadayini',
         'middlename'  => 'Mee',
-        'identification_no' => '130202003',
-        'password'  => 'secret',
-        'email'     => 'timothy33.tf@gmail.com',
+        'matric_no' => '130202003',
+        'password'  => 'village',
+        'email'     => 'admin@vb.com',
         'tel_no'     => '07088775522',
         'department_id' => 1,
         'user_type'   => 1,
@@ -27,7 +27,7 @@ return [
     ],
 
     'department'   => [
-        ['name' => 'ICT', 'college_name' => '', 'HOD' => 1],
+        ['name' => 'ICT', 'short_code' => '', 'HOD' => 1],
     ],
 
 ];

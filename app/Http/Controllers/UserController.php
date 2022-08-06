@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CourseRegistered;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -112,6 +113,20 @@ class UserController extends Controller
         {
             return apiFailure($e);
         }
+    }
+
+    public function getSession(){
+        $session = CourseRegistered::get()->unique('year');
+        // return "hello";
+        $responder = config('app.apiResponse');
+        $responder['status'] = 0;
+        $responder['message'] = "success";
+        $responder['data'] = $session;
+        $responder['meta'] = "";
+        // return $responder;
+        return response()->json( $responder );
+        // return response()->json($session);
+
     }
 
     public function viewSpecificUserType(User $user, Request $request)

@@ -14,7 +14,7 @@
                 <div class="col-md-12">
                     <td class="col-md-1">{{++index}}</td>
                     <td class="col-md-4">{{user.firstname}} {{user.lastname}}</td>
-                    <td class="col-md-3">{{user.identification_no}}</td>
+                    <td class="col-md-3">{{user.matric_no}}</td>
                     <td class="col-md-3" v-if="user.tel_no">{{user.tel_no}}</td>
                     <td class="col-md-3" v-else>080########</td>
                     <td class="col-md-1"><a data-toggle="modal" :data-target='"#"+user.firstname'>...</a></td>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Identification No</label>
-                                        <input type="text" v-model="user.identification_no" class="form-control" :disabled="!enabled">
+                                        <input type="text" v-model="user.matric_no" class="form-control" :disabled="!enabled">
                                     </div>
                                 </div>
                             </div>

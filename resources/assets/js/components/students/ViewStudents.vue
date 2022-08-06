@@ -6,7 +6,8 @@
                     <div class="doctor-profile">
                         <img :src="'/images/'+student.image" class="doctor-pic" alt="">
                         <div class="profile-usertitle">
-                            <div class="doctor-name">{{student.lastname}} {{student.firstname}}</div>
+                            <div class="doctor-name">{{student.lastname}} {{student.firstname}} {{ student.middlename }}</div>
+                            
                             <div class="name-center">
                                 <span v-for="department in departments">
                                     <span v-if="department.id == student.department_id">
@@ -17,6 +18,8 @@
                         </div>
                         <p>{{student.address}}</p>
                         <div><p><i class="fa fa-phone"></i><a :href="'tel:'+student.tel_no">  {{student.tel_no}}</a></p> </div>
+                        <div><p><i class=""></i>  {{student.matric_no}}</p> </div>
+                            
                         <div class="profile-userbuttons">
                             <a href="#" class="btn btn-circle deepPink-bgcolor btn-sm">Read More</a>
                         </div>

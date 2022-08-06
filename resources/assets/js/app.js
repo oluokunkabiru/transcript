@@ -7,7 +7,9 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+// window.Vue = require('vue');
+
+window.Vue = require('vue').default;
 
 import Switches from 'vue-switches'
 import Notifications from 'vue-notification'
@@ -27,44 +29,46 @@ Vue.use(Print);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('view-users', require('./components/users/ViewUsers.vue'));
-Vue.component('add-user', require('./components/users/CreateUser.vue'));
-Vue.component('change-password', require('./components/users/ChangePassword.vue'));
+Vue.component('view-users', require('./components/users/ViewUsers.vue').default);
+Vue.component('add-user', require('./components/users/CreateUser.vue').default);
+Vue.component('change-password', require('./components/users/ChangePassword.vue').default);
 
-Vue.component('view-students', require('./components/students/ViewStudents.vue'));
-Vue.component('add-student', require('./components/students/CreateStudents.vue'));
-Vue.component('edit-students', require('./components/students/EditStudents.vue'));
-
-
-Vue.component('view-departments', require('./components/departments/ViewDepartments.vue'));
-Vue.component('add-department', require('./components/departments/CreateDepartment.vue'));
-Vue.component('edit-departments', require('./components/departments/EditDepartment.vue'));
-
-Vue.component('view-types', require('./components/user_type/ViewTypes.vue'));
-Vue.component('add-type', require('./components/user_type/CreateType.vue'));
-
-Vue.component('view-courses', require('./components/courses/ViewCourses.vue'));
-Vue.component('add-course', require('./components/courses/CreateCourse.vue'));
-Vue.component('edit-courses', require('./components/courses/EditCourses.vue'));
+Vue.component('view-students', require('./components/students/ViewStudents.vue').default);
+Vue.component('add-student', require('./components/students/CreateStudents.vue').default);
+Vue.component('edit-students', require('./components/students/EditStudents.vue').default);
 
 
-Vue.component('new-registration', require('./components/course-registration/NewRegistration.vue'));
-Vue.component('view-registration', require('./components/course-registration/ViewRegistration.vue'));
+Vue.component('view-departments', require('./components/departments/ViewDepartments.vue').default);
+Vue.component('add-department', require('./components/departments/CreateDepartment.vue').default);
+Vue.component('edit-departments', require('./components/departments/EditDepartment.vue').default);
 
-Vue.component('create-result', require('./components/results/createResult.vue'));
-Vue.component('view-result', require('./components/results/ViewResult.vue'));
-Vue.component('edit-result', require('./components/results/EditResult.vue'));
-Vue.component('student-view-result', require('./components/results/ViewResultForStudent.vue'));
+Vue.component('view-types', require('./components/user_type/ViewTypes.vue').default);
+Vue.component('add-type', require('./components/user_type/CreateType.vue').default);
 
-Vue.component('view-professors', require('./components/professors/ViewProfessors.vue'));
-Vue.component('add-professor', require('./components/professors/CreateProfessor.vue'));
-Vue.component('edit-professors', require('./components/professors/EditProfessor.vue'));
+Vue.component('view-courses', require('./components/courses/ViewCourses.vue').default);
+Vue.component('add-course', require('./components/courses/CreateCourse.vue').default);
+Vue.component('edit-courses', require('./components/courses/EditCourses.vue').default);
+// Vue.component('course-registration-session', require('./components/results/createResult.vue').default);
 
-Vue.component('view-admin', require('./components/admins/ViewAdmin.vue'));
-Vue.component('add-admin', require('./components/admins/CreateAdmin.vue'));
-Vue.component('edit-admins', require('./components/admins/EditAdmin.vue'));
+
+Vue.component('new-registration', require('./components/course-registration/NewRegistration.vue').default);
+Vue.component('view-registration', require('./components/course-registration/ViewRegistration.vue').default);
+
+Vue.component('create-result', require('./components/results/createResult.vue').default);
+;
+Vue.component('view-result', require('./components/results/ViewResult.vue').default);
+Vue.component('edit-result', require('./components/results/EditResult.vue').default);
+Vue.component('student-view-result', require('./components/results/ViewResultForStudent.vue').default);
+
+Vue.component('view-professors', require('./components/professors/ViewProfessors.vue').default);
+Vue.component('add-professor', require('./components/professors/CreateProfessor.vue').default);
+Vue.component('edit-professors', require('./components/professors/EditProfessor.vue').default);
+
+Vue.component('view-admin', require('./components/admins/ViewAdmin.vue').default);
+Vue.component('add-admin', require('./components/admins/CreateAdmin.vue').default);
+Vue.component('edit-admins', require('./components/admins/EditAdmin.vue').default);
 
 
 

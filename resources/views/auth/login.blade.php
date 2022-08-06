@@ -37,7 +37,7 @@
                 <div class="card position">
                     <h4 class="l-login">Login</h4>
 
-                    <form class="col-md-12" id="sign_in" method="POST" action="{{ route('auth.login') }}">
+                    <form class="col-md-12" id="sign_in" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
                         <div class="form-group form-float">
                             <div class="form-line">

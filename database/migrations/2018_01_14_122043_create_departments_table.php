@@ -17,7 +17,7 @@ class CreateDepartmentsTable extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('college_name')->nullable();
+            $table->string('short_code')->nullable();
             $table->integer('HOD');
             $table->timestamps();
         });

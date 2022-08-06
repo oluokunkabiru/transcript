@@ -9,7 +9,7 @@ class Student extends Model
     //
     protected $fillable = [
         'firstname', 'middlename', 'lastname', 'tel_no',
-        'email', 'identification_no', 'department_id', 'staff_id'
+        'email', 'matric_no', 'department_id', 'staff_id'
     ];
 
     public function createNew($data)
@@ -49,8 +49,51 @@ class Student extends Model
                 'tel_no' => $data['tel_no'],
                 'email' => $data['email'],
                 'department_id' => $data['department_id'],
-                'identification_no' => $data['identification_no'],
+                'matric_no' => $data['matric_no'],
                 'staff_id' => $data['staff_id']
             ]);
     }
+
+
+
+    public function setDepartment($id){
+        $department = Department::find($id);
+        $code = $department->short_code;
+        $this->dept = $code;
+    }
+
+    public function getLastId(){
+        $student = Student::latest()->first();
+        if ($student){
+
+
+        return
+        str_pad(($student->id?$student->id:0)+1, 4, '0', STR_PAD_LEFT) ;
+        }else{
+          return  str_pad(0+1, 4, '0', STR_PAD_LEFT) ;
+
+        }
+    }
+
+    public function getDepartment(){
+        return $this->dept;
+    }
+
+    public function setDepartmentIdAttribute($value)
+    {
+        $this->setDepartment($value);
+        $this->attributes['department_id'] = $value  ;
+    }
+
+    public function courses()
+{
+    return $this->belongsToMany(Course::class);
+}
+
+
+    public function setMatricNoAttribute($value)
+    {
+        $this->attributes['matric_no'] = $this->getDepartment()."/".date("Y") ."/". $this->getLastId() ;
+    }
+
 }
