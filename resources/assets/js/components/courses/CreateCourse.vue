@@ -30,12 +30,13 @@
     export default {
         data() {
             return {
-                course:{}
+                course:{},
+                level:''
             }
         },
 
         mounted(){
-
+            this.fetchLevel();
         },
 
         methods: {
@@ -53,7 +54,17 @@
                     .catch(error =>{
                         this.$notify({type: 'error', text: '<span style="color: white">Process unsuccessfully.Check if course exists and try again later</span>', speed:400});
                     })
-            }
+            },
+
+            fetchLevel(){
+                axios.get('/get-level')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.level = _response.data;
+                        }
+                    })
+            },
         }
     }
 </script>

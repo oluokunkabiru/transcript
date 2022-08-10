@@ -3,11 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Result extends Model
 {
     //
-    protected $fillable = ['student_id', 'semester', 'year', 'course_reg_id', 'results', 'status', 'staff_id'];
+    protected $fillable = ['student_id','level_id', 'semester', 'year', 'course_reg_id', 'results', 'status', 'staff_id'];
 
     public function createNew($data)
     {
@@ -19,6 +20,10 @@ class Result extends Model
             $data['results'] = json_encode($data['results']);
             $data['staff_id'] = auth()->id();
             return $this->create($data);
+        }
+        // return $existingData;
+        else{
+            $this->update($data);
         }
 
 
@@ -50,6 +55,7 @@ class Result extends Model
             $data['status'] = 0;
         }
 
+        
         return $this->where('student_id', $data['student_id'])
                     ->where('semester', $data['semester'])
                     ->where('year', $data['year'])
@@ -60,6 +66,8 @@ class Result extends Model
                             ]);
     }
 
+
+    
     public function updateResultStatus($data)
     {
         $data['staff_id'] = auth()->id();
@@ -78,13 +86,57 @@ class Result extends Model
         return $result;
     }
 
+    public function registered(){
+       return $this->belongsTo(CourseRegistered::class,'course_reg_id', 'id');
+    }
+
+    public function semester(){
+        return $this->belongsTo(Semester::class, 'semester', 'id');
+    }
+
+    public function level(){
+        return $this->belongsTo(Level::class);
+    }
+
+    public function session(){
+        return $this->belongsTo(Session::class, 'year', 'id');
+    }
+
     public function viewSelected($data)
     {
-        $results = $this->where('semester', $data['semester'])
-            ->where('year', $data['year'])
-            ->where('status', 1)
+        
+        $results = $this->with(['registered','level', 'session', 'semester'])
+        // ->with(['register'])->whereHas("registered", function($reg) use ($data){
+        //     $reg->where('level_id', $data['level_id'])  ;
+        // })
+        ->where('semester', $data['semester'])
+        ->where('year', $data['year'])
+        
+        // ->where('student_id', Auth::user()->id)
+        ->where('status', 1)
+            ->get();
+
+        return $results;
+    }
+
+
+    public function viewSelectedStudent($data)
+    {
+        
+        $results = $this->with(['registered','level', 'session', 'semester'])
+        ->with(['register'])->whereHas("registered", function($reg) use ($data){
+            $reg->where('level_id', $data['level_id'])  ;
+        })
+        ->where('semester', $data['semester'])
+        ->where('year', $data['year'])
+        
+        // ->where('student_id', Auth::user()->id)
+        ->where('status', 1)
             ->get();
 
         return $results;
     }
 }
+
+
+

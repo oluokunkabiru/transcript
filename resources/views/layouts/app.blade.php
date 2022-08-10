@@ -34,7 +34,7 @@
         <div class="container-fluid">
             <a href="" class="site-logo">
                 {{--<img class="hidden-md-down" src="img/logo-2.png" alt="">--}}
-                <img class="hidden-lg-down" src="/img/logo-2-mob.png" alt="">
+                <img class="hidden-lg-down" src="{{ asset('img/logo-2-mob.png') }}" alt="">
                 <a href="{{route('home')}}" class="link"> Home</a>
             </a>
 

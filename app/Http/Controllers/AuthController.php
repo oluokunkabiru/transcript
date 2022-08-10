@@ -58,6 +58,20 @@ class AuthController extends Controller
         return view('auth.login', compact('title'));
     }
 
+
+
+    public function getTranscriptData(Request $request){
+        // return $request->all();
+        $matric_no = $request->matric_no;
+        $user = User::with(['department'])->where('matric_no', $matric_no)->firstOrFail();
+        
+        // $responder = config('app.apiResponse');
+        // $responder['status'] = 0;
+        // $responder['message'] = $msg;
+        // $responder['data'] = $user;
+        // $responder['meta'] = $meta;
+        return response()->json( $user);
+    }
     public function postLogin(Request $request, UserSetting $userSetting)
     {
         $data = $request->all();

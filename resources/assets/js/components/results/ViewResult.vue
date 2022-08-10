@@ -16,15 +16,22 @@
                             <tr>
                                 <td>
                                     Year:
-                                    <input type="text" class="form-control" v-model="year" placeholder="2017/2018">
+                                    <select name="" id="" class="form-control" v-model="year">
+                                        <option value="" selected>Session</option>
+                                        <option :value="session.id" v-for="session in sessions">
+                                            {{ session.name  }}
+                                        </option>
+                                    </select>
+                                    <!-- <input type="text" class="form-control" v-model="year" placeholder="2017/2018"> -->
                                 </td>
 
                                 <td>
                                     Semester:
                                     <select name="" id="" class="form-control" v-model="semester">
                                         <option value="">Semester</option>
-                                        <option value="1st">First Semester</option>
-                                        <option value="2nd">Second Semester</option>
+                                        <option :value="semester.id" v-for="semester in semesters">
+                                            {{ semester.name  }}
+                                        </option>
                                     </select>
                                 </td>
                             </tr>
@@ -48,11 +55,21 @@
                             <div id="printMe">
                                 <label>
                                     <span v-for="student in students">
-                                        <span v-if="student.id == selectedStudentId"><h4><strong><h5>Name:</h5> {{student.lastname}} {{student.firstname}} &emsp; <br><h5>Identification No:</h5> {{student.matric_no}}</strong></h4></span>
+                                        <span v-if="student.id == selectedStudentId"><h4><strong><h5>Name:</h5> {{student.lastname}} {{student.firstname}} &emsp; <br><h5>Matric No:</h5> {{student.matric_no}}</strong></h4></span>
                                     </span>
                                     <span>
-                                        <h4><strong><h5>Year: </h5> {{year}}<h5>Semester: </h5> {{semester}}</strong></h4>
+                                        <h4><strong>
+                                        <h5>Level: {{rlevel}}</h5> 
+                                        <h5>Semester: </h5> {{rsemester}}
+                                        <h5>Session: </h5> {{rsession}}
+                                        <!-- <h5>Semester: </h5> {{semester}} -->
+
+                                        </strong>
+                                        </h4>
                                     </span>
+
+
+                                    
                                 </label>
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle">
                                     <thead>
@@ -102,12 +119,19 @@
         data() {
             return {
                 courses: '',
+                authUser:'',
+                sessions :'',
+                rsession:'',
+                rsemester:'',
+                rlevel:'',
                 enabled: false,
                 allResults:'',
                 allCourseInfo:'',
-                year:'2017/2018',
+                year:'',
                 semester:'',
+                result:'',
                 students:'',
+                semesters:'',
                 showResult:false,
                 selectedStudentId:'',
                 resultArray:[],
@@ -125,12 +149,17 @@
                 axios.post('/result/view-selected', params)
                     .then(response => {
                         var _response = response.data;
+                        // console.log(_response);
                         if(_response.status === 0){
                             var allCourses = this.allCourseInfo;
                             this.allResults = _response.data;
-                            //console.log(this.allResults);
+                            this.rsession = this.allResults[0].session.name
+                            this.rsemester = this.allResults[0].semester.name
+                            this.rlevel = this.allResults[0].level.name
+                            // console.log(this.allResults[0].semester.name);
 
                             this.allResults.forEach( entry => {
+                                // console.log(entry.semester.name);
                                var result = JSON.parse(entry.results);
                                result.status = entry.status;
                                entry.results = JSON.parse(entry.results);
@@ -170,7 +199,46 @@
                         }
                     })
             },
+             fetchLevel(){
+                axios.get('/get-level')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.level = _response.data;
+                        }
+                    })
+            },
+            getAuthUser(){
+                axios.get('/auth')
+                    .then(response => {
+                        var _response = response.data;
+                        if (_response.status === 0){
+                            this.authUser = _response.data;
+                        }
+                    })
+            },
+            fetchSessions() {
+                axios.get('/student/course-registration-session')
+                    .then(response => {
+                        var _response = response.data;
+                        // console.log(_response.data);
+                        if (_response.status === 0) {
 
+                            this.sessions = _response.data;
+                            // console.log("hello");
+
+                        }
+                    })
+            },
+            getSemester(){
+                axios.get('/get-semester')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.semesters =  _response.data;
+                        }
+                    })
+            },
             getAllCourses(){
                 axios.get('/course/view')
                     .then(response => {
@@ -305,6 +373,9 @@
 
         mounted(){
             this.getAuthUser();
+            this.fetchSessions();
+            this.getSemester();
+
 
         },
 

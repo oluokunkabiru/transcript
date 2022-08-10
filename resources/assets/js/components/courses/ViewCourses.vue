@@ -7,9 +7,9 @@
                     <h4>{{course.name}}</h4>
                     <div class="text-muted">
                         <span class="m-r-10">{{course.course_code}}</span>
-                        <!-- <a class="course-likes m-l-10" href="#"><i class="fa fa-book"></i> 654</a> -->
+                        <a class="course-likes m-l-10" href="#"><i class="fa fa-book"></i> {{ course.level.name }}</a>
                     </div>
-                    <!-- <p><span><i class="ti-alarm-clock"></i> Duration: 1 Semester</span></p> -->
+                    <p><span><i class="ti-alarm-clock"></i> {{ course.semester.name }}</span></p>
                     <p>
                         <span>
                             <i class="ti-user"></i>
@@ -49,7 +49,7 @@
             fetchProfessors(){
                 axios.post('/user/viewSpecificType', ['4'])
                     .then(response => {
-                        console.log(response);
+                        // console.log(response);
                         var _response = response.data;
                         if(_response.status === 0){
                             this.professors = _response.data[0];

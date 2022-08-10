@@ -44,7 +44,7 @@
                 <div class="breadcrumb">
                     <div class="breadcrumb">
                         <div class="pull-left">
-                            <div class="page-title"><span style="color:rebeccapurple">Add Student</span></div>
+                            <div class="page-title"><span style="color:rebeccapurple">New Application</span></div>
                         </div>
                     </div>
                 </div>
@@ -54,9 +54,16 @@
                             <div class="card-head">
                                 <header><h4>Basic Information</h4></header>
                             </div>
-                            <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
-                                {{ csrf_field() }}
+                            {{-- <form  action="{{ route('register') }}"> --}}
+                                {{-- {{ csrf_field() }} --}}
                                 <div class="card-body row">
+                                    <div class="col-lg-6 p-t-20">
+                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+                                            <input class="mdl-textfield__input" type = "text" name="matric_no" id="matric_no">
+                                            <label class="mdl-textfield__label" >Matric No</label>
+                                        </div>
+                                    </div>
+
                                     <div class="col-lg-6 p-t-20">
                                         <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                             <input class="mdl-textfield__input" type = "text" name= "firstname">
@@ -76,12 +83,7 @@
                                             <label class="mdl-textfield__label" >Last Name</label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 p-t-20">
-                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class="mdl-textfield__input" type = "text" name="matric_no">
-                                            <label class="mdl-textfield__label" >Identification No</label>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-lg-6 p-t-20">
                                         <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
                                             <input class="mdl-textfield__input" type = "email" name="email">
@@ -99,7 +101,7 @@
                                     </div>
                                     <div class="col-lg-6 p-t-20">
                                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                            <select name="department_id" id="" class="form-control">
+                                            <select name="department_id"  class="form-control">
                                                 <option value="">Department</option>
                                                 @foreach($departments as $department)
                                                     <option value="{{$department->id}}">{{$department->name}}</option>
@@ -107,59 +109,24 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 p-t-20">
-                                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-                                            <select name="gender" id="" class="form-control">
-                                                <option value="" class="mdl-menu__item">Gender</option>
-                                                <option value="Male" class="mdl-menu__item">Male</option>
-                                                <option value="Female" class="mdl-menu__item">Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-t-20">
-                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class = "mdl-textfield__input" type = "text" name = "DOB" id="dateOfBirth">
-                                            <label class = "mdl-textfield__label" >Birth Date</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-t-20">
-                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class="mdl-textfield__input" type = "password" name="password">
-                                            <label class="mdl-textfield__label" >Password</label>
-                                            <span class="mdl-textfield__error">Enter Your Password!</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-t-20">
-                                        <div class = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-                                            <input class="mdl-textfield__input" type = "password" name="c_password">
-                                            <label class="mdl-textfield__label" >Confirm Password</label>
-                                            <span class="mdl-textfield__error">Enter Same Password!</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-t-20">
-                                        <div class = "mdl-textfield mdl-js-textfield txt-full-width">
-						                     <textarea class = "mdl-textfield__input" rows =  "4"
-                                                       name = "address" id="address"></textarea>
-                                            <label class = "mdl-textfield__label" for = "address">Address</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 p-t-20">
-                                        <label class="control-label col-md-3">Upload Photo
-                                        </label>
-                                        <div class="col-md-12">
-                                            <input type="file" id="" class="dropzone col-md-12 form-control" name="photo"/>
-                                        </div>
-                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                    
 
-                                    <input type="hidden" name ="user_type" value="3">
 
                                     <div class="col-lg-12 p-t-20 text-center">
-                                        <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Submit</button>
-                                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
-                                        <a href="{{route('login')}}" class="text">Login?</a>
+                                        <button  onclick="payWithPaystack()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-success">Pay Now</button>
+                                        <a href="{{route('login')}}" class="text">
+                                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-pink">Already Paid</button>
+                                        </a>
+                                        {{-- <a href="{{route('login')}}" class="text">Already Paid</a> --}}
                                     </div>
                                 </div>
-                            </form>
+                                <input type="hidden" name="referrence" >
+                                <input type="hidden" name="user_id" >
+                            {{-- </form> --}}
                         </div>
                     </div>
                 </div>
@@ -170,7 +137,7 @@
     <!-- end page container -->
     <!-- start footer -->
     <div class="page-footer">
-        <div class="page-footer-inner"> 2017 &copy; RMS</div>
+        <div class="page-footer-inner"> {{ date('Y') }} &copy; RMS</div>
         {{--<div class="scroll-to-top">--}}
             {{--<i class="icon-arrow-up"></i>--}}
         {{--</div>--}}
@@ -178,25 +145,136 @@
     <!-- end footer -->
 </div>
 <!-- start js include path -->
-<script src="/plugins/jquery/jquery.min.js" ></script>
-<script src="/plugins/popper/popper.js" ></script>
-<script src="/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
-<script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+{{-- <script src="{{ asset('plugins/jquery/jquery.min.js') }}" ></script> --}}
+{{-- <script src="{{ asset('plugins/popper/popper.js') }}" ></script> --}}
+<script src="{{ asset('bootsrap/jquery.js') }}"></script>
+<script src="{{ asset('bootsrap/popper.js') }}"></script>
+<script src="{{ asset('bootsrap/bootstrap.min.js') }}"></script>
+{{-- <script src="/plugins/jquery-blockui/jquery.blockui.min.js" ></script> --}}
+{{-- <script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script> --}}
+
 <!-- bootstrap -->
-<script src="/plugins/bootstrap/js/bootstrap.min.js" ></script>
+{{-- <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}" ></script> --}}
 <!-- Common js-->
-<script src="/js/app(copy).js" ></script>
-<script src="/js/layout.js" ></script>
-<script src="/js/theme-color.js" ></script>
+{{-- <script src="/js/app(copy).js" ></script> --}}
+{{-- <script src="/js/layout.js" ></script> --}}
+{{-- <script src="/js/theme-color.js" ></script> --}}
 <!-- Material -->
-<script src="/plugins/material/material.min.js"></script>
-<script src="/js/pages/material-select/getmdl-select.js" ></script>
-<script  src="/plugins/material-datetimepicker/moment-with-locales.min.js"></script>
+{{-- <script src="/plugins/material/material.min.js"></script> --}}
+{{-- <script src="/js/pages/material-select/getmdl-select.js" ></script> --}}
+{{-- <script  src="/plugins/material-datetimepicker/moment-with-locales.min.js"></script>
 <script  src="/plugins/material-datetimepicker/bootstrap-material-datetimepicker.js"></script>
 <script  src="/plugins/material-datetimepicker/datetimepicker.js"></script>
 <!-- dropzone -->
 <script src="/plugins/dropzone/dropzone.js" ></script>
-<script src="/plugins/dropzone/dropzone-call.js" ></script>
+<script src="/plugins/dropzone/dropzone-call.js" ></script> --}}
+<script src="{{ asset('axios/dist/axios.min.js') }}"></script>
+<script src="{{ asset('sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script> --}}
+{{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script> --}}
+
+{{-- <script src="https://js.paystack.co/v1/inline.js"></script> --}}
+	<script src="https://js.paystack.co/v1/inline.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 <!-- end js include path -->
+<script>
+    $(document).ready(function(){
+
+        $("#matric_no").on('change', function(){
+            var data = $("#matric_no").val();
+            var params = {
+                    matric_no: data,
+                }
+            axios.post('{{ route('transcript-data') }}', params)
+            .then(response => {
+                var student = response.data;
+                $("[name='firstname']").val(student.firstname).attr('disabled', true);
+                $("[name='lastname']").val(student.lastname).attr('disabled', true);
+                $("[name='middlename']").val(student.middlename).attr('disabled', true);
+                $("[name='email']").val(student.email).attr('disabled', true);
+                $("[name='user_id']").val(student.id);
+                $("[name='department_id'] option:not(:selected)").attr('disabled', 'true');
+                $("[name='department_id'] option:first").val(student.department_id).attr('disabled', true);
+                $("[name='department_id'] option:first").text(student.department.name).attr('disabled', true);
+
+                $("[name='tel_no']").val(student.tel_no).attr('disabled', true).click();
+                $(".mdl-textfield").addClass('is-focused')
+                // payWithPaystack();
+                // console.log(_response.firstname);
+                // console.log(_response.firstname);
+            })
+        })
+      
+        
+
+   
+    
+    })
+
+    function payWithPaystack() {
+        // alert($("[name='email']").val());
+        var matric_no =$("#matric_no").val();
+        // alert(matric_no.replace(/\//g, "_"));
+		var handler = PaystackPop.setup({
+			key: "{{ env('PAYSTACK_PUBLIC_KEY') }}",
+			email: $("[name='email']").val(),
+			amount: 20000,//parseInt($('#price').val()) * 100,
+			currency: "NGN",
+			ref: matric_no.replace(/\//g, "_")+8,
+			firstname: $("[name='firstname']").val(),
+			lastname: $("[name='lastname']").val() ,
+			// label: "Optional string that replaces customer email"
+			metadata: {
+				custom_fields: [
+					{
+						display_name: "Mobile Number",
+						variable_name: "mobile_number",
+						value: $("[name='tel_no']").val()
+					}
+				]
+			},
+			callback: function (response) {
+				$("[name='referrence']").val(response.reference);
+                // console.log(response);
+
+                if ($("[name='referrence']").val() != '') {
+                    
+                    var params = {
+                    user_id: $("[name='user_id']").val(),
+                    status :"success",
+                    payment_details : response,
+                }
+                        axios.post('{{ route('transcript_payment.store') }}', params)
+                        .then(response => {
+                            // console.log(response);
+                            swal({
+						title: response.data.message,
+						text: "Dear "+$("[name='firstname']").val() +" "+ $("[name='lastname']").val()+" "+$("[name='middlename']").val()+"!\n" + 'r : ' + response.reference +"\nPLEASE WAIT AS YOU WILL BE REDIRECTED TO LOGIN PAGE NOW...",
+						type: "success",
+						icon: "success",
+						showConfirmButton: true,
+						allowOutsideClick: false,
+						closeOnClickOutside: false,
+					}).then(function() {
+                        window.location.assign("{{ route('login') }}");
+                        });
+
+                });
+                        
+					
+					// form.submit();
+				}
+			},
+			onClose: function () {
+				alert('window closed');
+                // form.submit();
+			}
+		});
+		handler.openIframe();
+	}
+   
+</script>
 </body>
 </html>

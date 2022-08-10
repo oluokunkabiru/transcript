@@ -23,13 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function (){
    return redirect()->route('login');
 });
-
+Route::post('transcript-data', 'AuthController@getTranscriptData')->name('transcript-data');
 Route::get('login', 'AuthController@login')->name('login');
 Route::get('logout', 'AuthController@logout')->name('logout');
 Route::post('login', 'AuthController@postLogin')->name('auth.login');
 Route::get('register', 'AuthController@registerStudent')->name('student.register');
 Route::post('register', 'AuthController@postStudentRegistration')->name('register');
-
+Route::get('get-level', 'HomeController@getLevelData')->name('get-level');
+Route::get('get-semester', 'HomeController@getSemesterData')->name('get-semester');
+Route::resource('transcript_payment', 'TranscriptController');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -38,7 +40,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('auth', 'HomeController@auth');
     Route::get('pdf', 'HomeController@pdf');
     Route::post('saveThemeSetting', 'UserSettingController@add')->name('save_theme');
-
+    Route::get('view-session-list','SessionController@sessionList')->name('view-session-list');
+    Route::resource('session', 'SessionController');
     Route::group(['prefix' => 'course'], function (){
         Route::get('add', 'CourseController@add')->name('course.add');
         Route::post('add', 'CourseController@postAdd')->name('course.postAdd');
@@ -64,6 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('edit', 'ResultController@editIndex')->name('result.edit');
         Route::get('openView', 'ResultController@openView')->name('result.view');
         Route::post('view-selected', 'ResultController@viewSelectedResult');
+        Route::post('view-selected-by-student', 'ResultController@viewSelectedResult');
         Route::group(['prefix' => 'Settings'], function(){
             Route::get('view', 'ResultController@viewResultSetting');
             Route::post('edit', 'ResultController@editResultSetting');

@@ -7,41 +7,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description" content="RMS, Result Management System">
-    <meta name="keywords" content="RMS, Result Management System, Timothy, Timothy-mee">
+    <meta name="keywords" content="RMS, Result Transcript Management System, OLUOKUN KABIRU ADESINA">
     <title>RMS | Register</title>
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
     <!-- icons -->
-    <link href="/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ ('plugins/simple-line-icons/simple-line-icons.min.css')}}" rel="stylesheet" type="text/css" />
     {{--<link href="/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>--}}
-    <link rel="stylesheet" href="/css/fonts.googleapis.com/icone91f.css?family=Material+Icons">
+    <link rel="stylesheet" href="{{ ('css/fonts.googleapis.com/icone91f.css')}}?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Material Design Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!--bootstrap -->
-    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/plugins/summernote/summernote.css" rel="stylesheet">
-    <link href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ ('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ ('plugins/summernote/summernote.css')}}" rel="stylesheet">
+    <link href="{{ ('plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Material Design Lite CSS -->
-    <link rel="stylesheet" href="/plugins/material/material.min.css">
-    <link rel="stylesheet" href="/css/material_style.css">
+    <link rel="stylesheet" href="{{ ('plugins/material/material.min.css')}}">
+    <link rel="stylesheet" href="{{ ('css/material_style.css')}}">
     <!-- Theme Styles -->
     @if(session('theme') == 0)
-        <link href="/css/theme/light/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
-        <link href="/css/theme/light/style.css" rel="stylesheet" type="text/css" />
-        <link href="/css/theme/light/theme-color.css" rel="stylesheet" type="text/css" />
+        <link href="{{ ('css/theme/light/theme_style.css')}}" rel="stylesheet" id="rt_style_components" type="text/css" />
+        <link href="{{ ('css/theme/light/style.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ ('css/theme/light/theme-color.css')}}" rel="stylesheet" type="text/css" />
     @elseif(session('theme') == 1)
-        <link href="/css/theme/dark/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
-        <link href="/css/theme/dark/style.css" rel="stylesheet" type="text/css" />
-        <link href="/css/theme/dark/theme-color.css" rel="stylesheet" type="text/css" />
+        <link href="{{ ('css/theme/dark/theme_style.css')}}" rel="stylesheet" id="rt_style_components" type="text/css" />
+        <link href="{{ ('css/theme/dark/style.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ ('css/theme/dark/theme-color.css')}}" rel="stylesheet" type="text/css" />
     @endif
-    <link href="/css/plugins.min.css" rel="stylesheet" type="text/css" />
-    <link href="/css/responsive.css" rel="stylesheet" type="text/css" />
-    <link href="/css/pages/formlayout.css" rel="stylesheet" type="text/css" />
+    <link href="{{ ('css/plugins.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ ('css/responsive.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ ('css/pages/formlayout.css')}}" rel="stylesheet" type="text/css" />
     <!-- inbox style -->
-    <link href="/css/pages/inbox.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ ('css/pages/inbox.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- favicon -->
     {{--<link rel="shortcut icon" href="../assets/img/favicon.ico" />--}}
     <style>
@@ -84,7 +84,7 @@
             <div class="top-menu">
                 <ul class="nav navbar-nav pull-right">
                     <!-- start message dropdown -->
-                    <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                    {{-- <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <i class="fa fa-envelope-o"></i>
                             <span class="badge headerBadgeColor2"> 2 </span>
@@ -113,12 +113,12 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <!-- end message dropdown -->
                     <!-- start manage user dropdown -->
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle " src="/images/{{auth()->user()->image}}" />
+                                <img alt="" class="img-circle " src="{{ asset('images') }}/{{auth()->user()->image}}" />
                             <span class="username username-hide-on-mobile"> {{auth()->user()->lastname}} {{auth()->user()->firstname}}</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
@@ -270,31 +270,27 @@
                                 </li>
                             </ul>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="#" class="nav-link nav-toggle">
-                                <i class="material-icons">email</i>
-                                <span class="title">Email</span>
+                                <i class="material-icons">clock</i>
+                                <span class="title">Session</span>
                                 <span class="arrow"></span>
-                                <span class="label label-rouded label-menu label-danger">new</span>
+                                {{-- <span class="label label-rouded label-menu label-danger">new</span> --}}
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <span class="title">Inbox</span>
+                                    <a href="{{ route('session.create') }}" class="nav-link ">
+                                        <span class="title">Add New</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <span class="title">View Mail</span>
+                                    <a href="{{ route('session.index') }}" class="nav-link ">
+                                        <span class="title">All Session</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link ">
-                                        <span class="title">Compose Mail</span>
-                                    </a>
-                                </li>
+                                
                             </ul>
-                        </li> --}}
+                        </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link nav-toggle">
@@ -444,17 +440,17 @@
 <!-- Common js-->
 <script src="/js/app(copy).js" ></script>
 <script src="/js/layout.js" ></script>
-<script src="/js/pages/validation/form-validation.js" ></script>
+{{-- <script src="/js/pages/validation/form-validation.js" ></script> --}}
 <script src="/js/theme-color.js" ></script>
 <!-- material -->
 <script src="/plugins/material/material.min.js"></script>
 <!-- chart js -->
-<script src="/plugins/chart-js/Chart.bundle.js" ></script>
-<script src="/plugins/chart-js/utils.js" ></script>
-<script src="/js/pages/chart/chartjs/home-data.js" ></script>
+{{-- <script src="/plugins/chart-js/Chart.bundle.js" ></script> --}}
+{{-- <script src="/plugins/chart-js/utils.js" ></script> --}}
+{{-- <script src="/js/pages/chart/chartjs/home-data.js" ></script> --}}
 <!-- summernote -->
-<script src="/plugins/summernote/summernote.js" ></script>
-<script src="/js/pages/summernote/summernote-data.js" ></script>
+{{-- <script src="/plugins/summernote/summernote.js" ></script> --}}
+{{-- <script src="/js/pages/summernote/summernote-data.js" ></script> --}}
 <!-- end js include path -->
 </body>
 </html>

@@ -7,18 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <meta name="description" content="RMS, Result Management System">
-    <meta name="keywords" content="RMS, Result Management System, Timothy, Timothy-mee">
+    <meta name="description" content="RMS, Result Transcript Management System">
+    <meta name="keywords" content="RMS, Result Transcript Management System, OLUOKUN KABIRU ADESINA">
 
     <!-- Favicon-->
     {{--<link rel="icon" href="favicon.ico" type="image/x-icon">--}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Result Transcript Management System') }}</title>
 
-    <link href="/css/login2.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/login.css">
+    <link href="{{ asset('css/login2.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
 </head>
 
@@ -30,7 +30,9 @@
                 <div class="l-detail">
                     <h5 class="position">Welcome <h6>to the</h6></h5>
                     <h1>Result Management System</h1>
-                    <h3 class="position">Sign in to start</h3>
+                    <h3 class="position">
+                        <img src="{{ asset('img/logo-2-mob.png') }}" alt="">
+                    </h3>
                 </div>
             </div>
             <div class="col-lg-3 col-md-4 col-xs-12 p-r-0">

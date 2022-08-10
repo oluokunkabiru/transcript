@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CourseRegistered;
+use App\Session;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -116,7 +117,7 @@ class UserController extends Controller
     }
 
     public function getSession(){
-        $session = CourseRegistered::get()->unique('year');
+        $session = Session::get();
         // return "hello";
         $responder = config('app.apiResponse');
         $responder['status'] = 0;

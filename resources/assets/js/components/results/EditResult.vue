@@ -18,8 +18,8 @@
                                     Year:
                                      <select name="" id="" class="form-control" v-model="year">
                                         <option value="" selected>Session</option>
-                                        <option :value="session.year" v-for="session in sessions">
-                                            {{ session.year  }}
+                                        <option :value="session.id" v-for="session in sessions">
+                                            {{ session.name  }}
                                         </option>
                                     </select>
                                     <!-- <input type="text" class="form-control" v-model="year" placeholder="2017/2018"> -->
@@ -28,8 +28,9 @@
                                 <td>
                                     Semester:
                                     <select name="" id="" class="form-control" v-model="semester">
-                                        <option value="1st">First Semester</option>
-                                        <option value="2nd">Second Semester</option>
+                                        <option :value="semester.id" v-for="semester in semesters">
+                                            {{ semester.name  }}
+                                        </option>
                                     </select>
                                 </td>
                             </tr>
@@ -108,7 +109,7 @@
                 edit:false,
                 focused_student_id:'',
                 focused_result:'',
-
+                semesters :'',
                 resultDetails: {},
             }
         },
@@ -124,7 +125,15 @@
                         }
                     })
             },
-
+ fetchLevel(){
+                axios.get('/get-level')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.level_id = _response.data;
+                        }
+                    })
+            },
             fetchStudents(){
                 axios.get('/student/view')
                     .then(response => {
@@ -141,6 +150,16 @@
                         var _response = response.data;
                         if(_response.status === 0){
                             this.listOfCourses =  _response.data;
+                        }
+                    })
+            },
+
+            getSemester(){
+                axios.get('/get-semester')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.semesters =  _response.data;
                         }
                     })
             },
@@ -234,6 +253,7 @@
             this.fetchStudents();
             this.getCourses();
             this.fetchSessions();
+            this.getSemester();
 
         },
 

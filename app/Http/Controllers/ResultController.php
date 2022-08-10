@@ -29,19 +29,23 @@ class ResultController extends Controller
     public function add(Request $request, Result $resultObject)
     {
 
-        
+        // return ($request);
+
         try
         {
             $result = $resultObject->createNew($request->all());
+            // return $result;
             if ($result){
                 return apiSuccess($result);
             }
             else{
+                return $result;
                 return apiFailure('');
             }
         }
         catch (\Exception $e)
         {
+            return $e;
             return apiFailure($e);
         }
     }
@@ -126,10 +130,27 @@ class ResultController extends Controller
 
     public function viewSelectedResult(Request $request, Result $resultObject)
     {
+        // return $request;
         try
         {
             $result = $resultObject->viewSelected($request->all());
+            // return $result;
+            return apiSuccess($result);
+        }
+        catch (\Exception $e)
+        {
+            return apiFailure($e);
+        }
+    }
 
+
+    public function viewSelectedResultByStudent(Request $request, Result $resultObject)
+    {
+        // return $request;
+        try
+        {
+            $result = $resultObject->viewSelectedStudent($request->all());
+            // return $result;
             return apiSuccess($result);
         }
         catch (\Exception $e)

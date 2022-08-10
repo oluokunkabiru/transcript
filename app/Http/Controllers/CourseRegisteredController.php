@@ -24,6 +24,7 @@ class CourseRegisteredController extends Controller
         try
         {
             $result = $courseRegistered->createNew($request->all());
+            // return $result;
             if ($result){
                 return apiSuccess($result);
             }
@@ -33,6 +34,7 @@ class CourseRegisteredController extends Controller
         }
         catch (\Exception $e)
         {
+            // return $e;
             return apiFailure($e);
         }
     }

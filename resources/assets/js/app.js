@@ -51,8 +51,11 @@ Vue.component('view-courses', require('./components/courses/ViewCourses.vue').de
 Vue.component('add-course', require('./components/courses/CreateCourse.vue').default);
 Vue.component('edit-courses', require('./components/courses/EditCourses.vue').default);
 // Vue.component('course-registration-session', require('./components/results/createResult.vue').default);
+Vue.component('session-create', require('./components/session/CreateSession.vue').default);
+Vue.component('session-index', require('./components/session/ViewSession.vue').default);
+Vue.component('session-edit', require('./components/session/EditSession.vue').default);
 
-
+// Session
 Vue.component('new-registration', require('./components/course-registration/NewRegistration.vue').default);
 Vue.component('view-registration', require('./components/course-registration/ViewRegistration.vue').default);
 

@@ -11,16 +11,32 @@
                     <tr>
                         <td>
                             Year:
-                            <input type="text" class="form-control" v-model="year" placeholder="2017/2018">
+                             <select name="" id="" class="form-control" v-model="registrationDetails.year">
+                                        <option value="" selected>Session</option>
+                                        <option :value="session.id" v-for="session in sessions">
+                                            {{ session.name  }}
+                                        </option>
+                                    </select>
+                            <!-- <input type="text" class="form-control" v-model="year" placeholder="2017/2018"> -->
                         </td>
 
                         <td>
                             Semester:
-                            <select name="" id="" class="form-control col-md-6" v-model="semester">
-                                <option value="1st">First Semester</option>
-                                <option value="2nd">Second Semester</option>
-                            </select>
+                              <select name="" id="" class="form-control" v-model="semester">
+                                        <option :value="semester.id" v-for="semester in semesters">
+                                            {{ semester.name  }}
+                                        </option>
+                                    </select>
                         </td>
+                        <td>Level:
+
+                                <select name="" id="" class="form-control" v-model="registrationDetails.level_id">
+                                        <option value="" selected>Level</option>
+                                        <option :value="session.id" v-for="session in levels">
+                                            {{ session.name  }}
+                                        </option>
+                                    </select>
+                            </td>
                     </tr>
                 </table>
 
@@ -63,6 +79,8 @@
         data(){
             return {
                 students :'',
+                sessions :'',
+                semesters:'',
                 listOfCourses:{},
                 semester:'',
                 year:'',
@@ -86,7 +104,28 @@
                         }
                     })
             },
+            fetchSessions() {
+            axios.get('/student/course-registration-session')
+                .then(response => {
+                    var _response = response.data;
+                    console.log(_response.data);
+                    if (_response.status === 0) {
 
+                        this.sessions = _response.data;
+                        console.log("hello");
+
+                    }
+                })
+        },
+ getSemester(){
+                            axios.get('/get-semester')
+                                .then(response => {
+                                    var _response = response.data;
+                                    if(_response.status === 0){
+                                        this.semesters =  _response.data;
+                                    }
+                                })
+                        },
             getCourses(){
                 axios.get('/course/view')
                     .then(response => {
@@ -153,6 +192,8 @@
         mounted(){
             this.fetchStudent();
             this.getCourses();
+             this.fetchSessions();
+            this.getSemester();
         },
 
         watch: {

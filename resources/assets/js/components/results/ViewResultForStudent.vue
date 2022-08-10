@@ -9,14 +9,30 @@
             <tr>
                 <td>
                     Year:
-                    <input type="text" class="form-control" v-model="year" placeholder="2017/2018">
+                    <select name="" id="" class="form-control" v-model="year">
+                                        <option value="" selected>Session</option>
+                                        <option :value="session.id" v-for="session in sessions">
+                                            {{ session.name  }}
+                                        </option>
+                                    </select>
+                    <!-- <input type="text" class="form-control" v-model="year" placeholder="2017/2018"> -->
                 </td>
 
                 <td>
                     Semester:
                     <select name="" id="" class="form-control col-md-6" v-model="semester">
-                        <option value="1st">First Semester</option>
-                        <option value="2nd">Second Semester</option>
+                        <option :value="semester.id" v-for="semester in semesters">
+                                            {{ semester.name  }}
+                                        </option>
+                    </select>
+                </td>
+
+                <td>
+                    Levels:
+                    <select name="" id="" class="form-control col-md-6" v-model="level_id">
+                        <option :value="level.id" v-for="level in levels">
+                                            {{ level.name  }}
+                                        </option>
                     </select>
                 </td>
             </tr>
@@ -68,12 +84,16 @@
         data() {
             return {
                 courses: '',
+                level_id:'',
+                levels:'',
+                sessions :'',
                 enabled: false,
                 allResults:'',
                 allCourseInfo:'',
-                year:'2017/2018',
+                year:'2021/2022',
                 semester:'',
                 students:'',
+                semesters:'',
                 showResult:false,
                 selectedStudentId:'',
                 resultArray:[],
@@ -86,15 +106,16 @@
                 var params = {
                     semester: this.semester,
                     year: this.year,
+                    level_id : this.level_id,
                 }
                 this.resultArray = [];
-                axios.post('/result/view-selected', params)
+                axios.post('/result/view-selected-by-student', params)
                     .then(response => {
                         var _response = response.data;
                         if(_response.status === 0){
                             var allCourses = this.allCourseInfo;
                             this.allResults = _response.data;
-                            //console.log(this.allResults);
+                            // console.log(this.allResults);
 
                             this.allResults.forEach( entry => {
                                var result = JSON.parse(entry.results);
@@ -131,6 +152,7 @@
 
 //                                console.log(result);
                                 this.resultArray.push(result);
+                                // console.log(this.resultArray);
                             });
                         }
                     })
@@ -145,7 +167,20 @@
                         }
                     })
             },
+   fetchSessions() {
+                        axios.get('/student/course-registration-session')
+                            .then(response => {
+                                var _response = response.data;
+                                // console.log(_response.data);
+                                if (_response.status === 0) {
 
+                                    this.sessions = _response.data;
+
+                                    // console.log(this.sessions);
+
+                                }
+                            })
+                    },
             fetchStudent(){
                 axios.get('/student/loggedIn')
                     .then(response => {
@@ -156,14 +191,30 @@
                         }
                     })
             },
-
+ fetchLevel(){
+                axios.get('/get-level')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.levels = _response.data;
+                        }
+                    })
+            },
             viewResult(student_id){
 //                console.log(this.allResults);
-//                console.log(this.resultArray);
+               console.log(this.resultArray);
                 this.calculateCGPA(student_id);
                 this.showResult = !this.showResult;
             },
-
+getSemester(){
+                axios.get('/get-semester')
+                    .then(response => {
+                        var _response = response.data;
+                        if(_response.status === 0){
+                            this.semesters =  _response.data;
+                        }
+                    })
+            },
             /*calculateCGPA (){
                 var totalUnits = 0.0;
                 var gradePoints = 0.0;
@@ -195,10 +246,12 @@
             }*/
 
             calculateCGPA (student_id){
+                // console.log(student_id);
                 var totalUnits = 0.0;
                 var gradePoints = 0.0;
                 var  gpa = 0.0;
                 this.gpa = {};
+                // console.log(this.resultArray);
                /* var student_id = '';*/
                 this.resultArray.forEach(entry =>{
                     entry.forEach(subEntry => {
@@ -210,6 +263,7 @@
                             gradePoints += points
                         }
                     })
+                    // console.log(this.resultArray);
 
                     gpa = gradePoints / totalUnits;
 
@@ -237,6 +291,10 @@
         mounted(){
             /*this.fetchView();*/
             /*this.getAllCourses();*/
+            this.fetchSessions();
+            this.getSemester();
+            this.fetchLevel();
+            // this.fetchSessions();
 
         },
 
@@ -246,6 +304,17 @@
                     this.fetchStudent();
                     this.getAllCourses();
                     this.fetchResults();
+                    // this.calculateCGPA(this.student_id);
+                }
+            },
+
+            level_id() {
+                if (this.level_id) {
+                    this.fetchStudent();
+                    this.getAllCourses();
+                    this.fetchResults();
+                                        // this.calculateCGPA(this.student_id);
+
                 }
             },
 
@@ -254,6 +323,8 @@
                     this.fetchStudent();
                     this.getAllCourses();
                     this.fetchResults();
+                    // this.calculateCGPA(this.student_id);
+
                 }
             }
         }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Department;
+use App\Level;
+use App\Semester;
 use App\Student;
 use App\User;
 use App\UserSetting;
@@ -24,6 +26,7 @@ class HomeController extends Controller
     public function index(User $user,  Course $course, Department $department, UserSetting $userSetting)
     {
         // return "hello";
+        // return Level::get();
         
         if(auth()->user()->user_type != 1 && auth()->user()->user_type != 2){
             return view('auth.login');
@@ -86,6 +89,26 @@ class HomeController extends Controller
 
         return view('home')->with('data',$data);
     }
+
+    public function getLevelData(){
+        $level = Level::get();
+        // $level = Semester::get();
+        $responder = config('app.apiResponse');
+        $responder['status'] = 0;
+        $responder['message'] = "Session Updated Successfully";
+        $responder['data'] = $level;
+        return response()->json($responder);
+        }
+
+    public function getSemesterData(){
+        $level = Semester::orderBy('name')->get();
+        $responder = config('app.apiResponse');
+        $responder['status'] = 0;
+        $responder['message'] = "Session Updated Successfully";
+        $responder['data'] = $level;
+        return response()->json($responder);
+    }
+
 
     public function collectAuthUser()
     {

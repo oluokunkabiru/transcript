@@ -27,12 +27,12 @@
                             @else
                                 <span class="info-box-number">0</span>
                             @endif
-                            <div class="progress">
+                            {{-- <div class="progress">
                                 <div class="progress-bar" style="width: 45%"></div>
                             </div>
                             <span class="progress-description">
 						                    45% Increase in 28 Days
-						                  </span>
+						                  </span> --}}
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -50,12 +50,12 @@
                             @else
                                 <span class="info-box-number">0</span>
                             @endif
-                            <div class="progress">
+                            {{-- <div class="progress">
                                 <div class="progress-bar" style="width: 40%"></div>
                             </div>
                             <span class="progress-description">
 						                    40% Increase in 28 Days
-						                  </span>
+						                  </span> --}}
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -72,12 +72,12 @@
                             @else
                                 <span class="info-box-number">0</span>
                             @endif
-                            <div class="progress">
+                            {{-- <div class="progress">
                                 <div class="progress-bar" style="width: 85%"></div>
                             </div>
                             <span class="progress-description">
 						                    85% Increase in 28 Days
-						                  </span>
+						                  </span> --}}
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -94,12 +94,12 @@
                             @else
                                 <span class="info-box-number">0</span>
                             @endif
-                            <div class="progress">
+                            {{-- <div class="progress">
                                 <div class="progress-bar" style="width: 50%"></div>
                             </div>
                             <span class="progress-description">
 						                    50% Increase in 28 Days
-						                  </span>
+						                  </span> --}}
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -118,13 +118,13 @@
                         <div class="thumb-center"><img class="img-responsive" alt="user" src="../assets/img/course/course1.jpg"></div>
                         <div class="course-box">
                             <h4>{{$courses['name']}}</h4>
-                            <div class="text-muted">
+                            {{-- <div class="text-muted">
                                 <span class="m-r-10">{{$courses['created_at']}}</span>
-                            </div>
-                            <p><span><i class="ti-alarm-clock"></i> Duration: 1 Semester</span></p>
+                            </div> --}}
+                            {{-- <p><span><i class="ti-alarm-clock"></i> Duration: 1 Semester</span></p> --}}
                             <p><span><i class="ti-user"></i> Course Code: {{$courses['course_code']}}</span></p>
                             {{--<p><span><i class="fa fa-graduation-cap"></i> Students: 200+</span></p>--}}
-                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-info">Read More</button>
+                            {{-- <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-info">Read More</button> --}}
                         </div>
                     </div>
                 </div>
