@@ -220,9 +220,9 @@
 		var handler = PaystackPop.setup({
 			key: "{{ env('PAYSTACK_PUBLIC_KEY') }}",
 			email: $("[name='email']").val(),
-			amount: 20000,//parseInt($('#price').val()) * 100,
+			amount: 1000*100,//This is payment in kobo, so 200 times 100 kobo = #200 ,
 			currency: "NGN",
-			ref: matric_no.replace(/\//g, "_")+8,
+			ref: matric_no.replace(/\//g, "_"),
 			firstname: $("[name='firstname']").val(),
 			lastname: $("[name='lastname']").val() ,
 			// label: "Optional string that replaces customer email"

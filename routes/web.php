@@ -17,7 +17,9 @@
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');*/
 
+use App\User;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function (){
@@ -150,6 +152,12 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('view-selected', 'CourseRegisteredController@viewSelectedRegistrationForStudents');
             Route::get('edit', 'CourseRegisteredController@editIndex')->name('course-registration.edit');
             Route::get('new', 'CourseRegisteredController@newRegistration')->name('course-registration.new');
+            // if (User::checkPay() != NULL){
+            Route::get('transcript-check', 'ResultController@viewTranscript')->name('transcript-check');
+            
+            Route::get('transcript-check-result', 'ResultController@transcript');
+            Route::get("download-result", 'ResultController@downloadResult')->name('downloadl-result');
+            // }
         });
         Route::get('view-selected-result', 'ResultController@viewForStudent')->name('student-view-result');
         Route::get('profile', 'StudentController@viewStudentProfile')->name('student-profile');

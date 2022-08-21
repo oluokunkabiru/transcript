@@ -64,6 +64,7 @@ Vue.component('create-result', require('./components/results/createResult.vue').
 Vue.component('view-result', require('./components/results/ViewResult.vue').default);
 Vue.component('edit-result', require('./components/results/EditResult.vue').default);
 Vue.component('student-view-result', require('./components/results/ViewResultForStudent.vue').default);
+Vue.component('transcript-view', require('./components/results/Transcript.vue').default);
 
 Vue.component('view-professors', require('./components/professors/ViewProfessors.vue').default);
 Vue.component('add-professor', require('./components/professors/CreateProfessor.vue').default);

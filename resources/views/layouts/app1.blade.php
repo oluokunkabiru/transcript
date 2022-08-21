@@ -12,36 +12,39 @@
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
     <!-- icons -->
-    <link href="{{ ('plugins/simple-line-icons/simple-line-icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/simple-line-icons/simple-line-icons.min.css')}}" rel="stylesheet" type="text/css" />
     {{--<link href="/css/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css"/>--}}
-    <link rel="stylesheet" href="{{ ('css/fonts.googleapis.com/icone91f.css')}}?family=Material+Icons">
+    <link rel="stylesheet" href="{{ asset('css/fonts.googleapis.com/icone91f.css')}}?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Material Design Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!--bootstrap -->
-    <link href="{{ ('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ ('plugins/summernote/summernote.css')}}" rel="stylesheet">
-    <link href="{{ ('plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('plugins/summernote/summernote.css')}}" rel="stylesheet">
+    <link href="{{ asset('plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
 
     <!-- Material Design Lite CSS -->
-    <link rel="stylesheet" href="{{ ('plugins/material/material.min.css')}}">
-    <link rel="stylesheet" href="{{ ('css/material_style.css')}}">
+    <link rel="stylesheet" href="{{ asset('plugins/material/material.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/material_style.css')}}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-2-mob.png') }}" type="image/x-icon">
     <!-- Theme Styles -->
     @if(session('theme') == 0)
-        <link href="{{ ('css/theme/light/theme_style.css')}}" rel="stylesheet" id="rt_style_components" type="text/css" />
-        <link href="{{ ('css/theme/light/style.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ ('css/theme/light/theme-color.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/theme/light/theme_style.css')}}" rel="stylesheet" id="rt_style_components" type="text/css" />
+        <link href="{{ asset('css/theme/light/style.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/theme/light/theme-color.css')}}" rel="stylesheet" type="text/css" />
     @elseif(session('theme') == 1)
-        <link href="{{ ('css/theme/dark/theme_style.css')}}" rel="stylesheet" id="rt_style_components" type="text/css" />
-        <link href="{{ ('css/theme/dark/style.css')}}" rel="stylesheet" type="text/css" />
-        <link href="{{ ('css/theme/dark/theme-color.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/theme/dark/theme_style.css')}}" rel="stylesheet" id="rt_style_components" type="text/css" />
+        <link href="{{ asset('css/theme/dark/style.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/theme/dark/theme-color.css')}}" rel="stylesheet" type="text/css" />
     @endif
-    <link href="{{ ('css/plugins.min.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ ('css/responsive.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{ ('css/pages/formlayout.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/plugins.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/responsive.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/pages/formlayout.css')}}" rel="stylesheet" type="text/css" />
     <!-- inbox style -->
-    <link href="{{ ('css/pages/inbox.min.css')}}" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('css/pages/inbox.min.css')}}" rel="stylesheet" type="text/css" /> --}}
+    <link rel="shortcut icon" href="{{ asset('img/logo-2-mob.png') }}" type="image/x-icon">
+
     <!-- favicon -->
     {{--<link rel="shortcut icon" href="../assets/img/favicon.ico" />--}}
     <style>
@@ -70,69 +73,19 @@
             <ul class="nav navbar-nav navbar-left in">
                 <li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
             </ul>
-            {{--<form class="search-form-opened" action="#" method="GET">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..." name="query">
-                    <span class="input-group-btn">
-                          <a href="javascript:;" class="btn submit">
-                             <i class="icon-magnifier"></i>
-                           </a>
-                        </span>
-                </div>
-            </form>--}}
+            
 
             <div class="top-menu">
                 <ul class="nav navbar-nav pull-right">
-                    <!-- start message dropdown -->
-                    {{-- <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <i class="fa fa-envelope-o"></i>
-                            <span class="badge headerBadgeColor2"> 2 </span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="external">
-                                <h3><span class="bold">Messages</span></h3>
-                                <span class="notification-label cyan-bgcolor">New 2</span>
-                            </li>
-                            <li>
-                                <ul class="dropdown-menu-list small-slimscroll-style" data-handle-color="#637283">
-                                    <li>
-                                        <a href="#">
-                                                <span class="photo">
-                                                	<img src="../assets/img/prof/prof2.jpg" class="img-circle" alt=""> </span>
-                                            <span class="subject">
-                                                	<span class="from"> Sarah Smith </span>
-                                                	<span class="time">Just Now </span>
-                                                </span>
-                                            <span class="message"> Jatin I found you on LinkedIn... </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <div class="dropdown-menu-footer">
-                                    <a href="#"> All Messages </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </li> --}}
-                    <!-- end message dropdown -->
-                    <!-- start manage user dropdown -->
+
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                <img alt="" class="img-circle " src="{{ asset('images') }}/{{auth()->user()->image}}" />
+                                <img alt="" class="img-circle " src="{{ asset('img/logo-2-mob.png') }}" />
                             <span class="username username-hide-on-mobile"> {{auth()->user()->lastname}} {{auth()->user()->firstname}}</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">
-                            <li>
-                                <a href="user_profile.html">
-                                    <i class="icon-user"></i> Profile </a>
-                            </li>
-                            <li class="divider"> </li>
-                            <li>
-                                <a href="lock_screen.html">
-                                    <i class="icon-lock"></i> Lock
-                                </a>
-                            </li>
+                            
                             <li>
                                 <a href="{{route('logout')}}">
                                     <i class="icon-logout"></i> Log Out </a>
@@ -165,7 +118,7 @@
                         <li class="sidebar-user-panel">
                             <div class="user-panel">
                                 <div class="pull-left image">
-                                    <img src="/images/{{auth()->user()->image}}" class="img-circle user-img-circle" alt="User Image" />
+                                    <img src="{{ asset('img/logo-2-mob.png') }}" class="img-circle user-img-circle" alt="User Image" />
                                 </div>
                                 <div class="pull-left info">
                                     <p> {{auth()->user()->lastname}} {{auth()->user()->firstname}}</p>
@@ -423,34 +376,27 @@
     <!-- end footer -->
 </div>
 {{--My Vue.js Include--}}
-<script src="/js/app.js"></script>
+<script src="{{ asset('js/app.js')}}"></script>
 <!-- start js include path -->
-<script src="/plugins/jquery/jquery.min.js" ></script>
-<script src="/plugins/popper/popper.js" ></script>
-<script src="/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
-<script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+<script src="{{ asset('plugins/jquery/jquery.min.js')}}" ></script>
+<script src="{{ asset('plugins/popper/popper.js')}}" ></script>
+<script src="{{ asset('plugins/jquery-blockui/jquery.blockui.min.js')}}" ></script>
+<script src="{{ asset('plugins/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 <!-- bootstrap -->
-<script src="/plugins/bootstrap/js/bootstrap.min.js" ></script>
-<script src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js" ></script>
-<script src="/plugins/sparkline/jquery.sparkline.js" ></script>
-<script src="/js/pages/sparkline/sparkline-data.js" ></script>
-<script src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"  charset="UTF-8"></script>
-<script src="/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker-init.js"  charset="UTF-8"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js')}}" ></script>
+<script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}" ></script>
+<script src="{{ asset('plugins/sparkline/jquery.sparkline.js')}}" ></script>
+<script src="{{ asset('js/pages/sparkline/sparkline-data.js')}}" ></script>
+<script src="{{ asset('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js')}}"  charset="UTF-8"></script>
+<script src="{{ asset('plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker-init.js')}}"  charset="UTF-8"></script>
 
 <!-- Common js-->
-<script src="/js/app(copy).js" ></script>
-<script src="/js/layout.js" ></script>
+<script src="{{ asset('js/app(copy).js')}}" ></script>
+<script src="{{ asset('js/layout.js')}}" ></script>
 {{-- <script src="/js/pages/validation/form-validation.js" ></script> --}}
-<script src="/js/theme-color.js" ></script>
+<script src="{{ asset('js/theme-color.js')}}" ></script>
 <!-- material -->
-<script src="/plugins/material/material.min.js"></script>
-<!-- chart js -->
-{{-- <script src="/plugins/chart-js/Chart.bundle.js" ></script> --}}
-{{-- <script src="/plugins/chart-js/utils.js" ></script> --}}
-{{-- <script src="/js/pages/chart/chartjs/home-data.js" ></script> --}}
-<!-- summernote -->
-{{-- <script src="/plugins/summernote/summernote.js" ></script> --}}
-{{-- <script src="/js/pages/summernote/summernote-data.js" ></script> --}}
-<!-- end js include path -->
+<script src="{{ asset('plugins/material/material.min.js')}}"></script>
+
 </body>
 </html>

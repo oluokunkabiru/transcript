@@ -37,6 +37,15 @@
             </div>
             <div class="col-lg-3 col-md-4 col-xs-12 p-r-0">
                 <div class="card position">
+                    @if (session('error'))
+                        
+                    
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>Error!</strong> {{ session('error') }}.
+                        </div>
+
+                      @endif
                     <h4 class="l-login">Login</h4>
 
                     <form class="col-md-12" id="sign_in" method="POST" action="{{ route('login') }}">
@@ -69,9 +78,9 @@
 {{--
                         <a href="sign-up.html" class="btn btn-raised waves-effect" type="submit">SIGN UP</a>
 --}}
-                        <a href="forgot-password.html">Forgot Password?</a>
+                        {{-- <a href="{{ route('user.password') }}">Forgot Password?</a> --}}
                         <br>
-                        <a href="{{route('register')}}">
+                        <a href="{{route('register')}}" class="text-warning">
                             Student and Don't have an account?
                         </a>
                     </form>

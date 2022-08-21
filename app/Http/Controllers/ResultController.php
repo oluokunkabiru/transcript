@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Result;
 use App\ResultSetting;
+// use Barryvdh\DomPDF\PDF;
+use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResultController extends Controller
 {
@@ -144,6 +147,9 @@ class ResultController extends Controller
     }
 
 
+
+
+
     public function viewSelectedResultByStudent(Request $request, Result $resultObject)
     {
         // return $request;
@@ -176,4 +182,34 @@ class ResultController extends Controller
     {
         return view('results/viewForStudent');
     }
+
+
+    public function viewTranscript(){
+        $results = Result::with(['registered','level', 'session', 'sem'])->where('student_id', Auth::user()->id)->get();
+        // return $results;
+
+        return view('results.trancript', compact(['results']));
+    }
+
+
+// ->where('student_id', Auth::user()->id)
+    public function transcript(){
+        $results = Result::with(['registered','level', 'session', 'semester'])->where('student_id', Auth::user()->id)->get();
+        $responder = config('app.apiResponse');
+        $responder['status'] = 0;
+        $responder['message'] = "Congratulation";
+        $responder['data'] = $results;
+        return $responder;
+
+
+    }
+
+
+    public function downloadResult(){
+        $results = Result::with(['registered','level', 'session', 'sem'])->where('student_id', Auth::user()->id)->get();
+        $pdf = PDF::loadView('results.result-download', compact('results'));
+        return $pdf->download(Auth::user()->firstname." ". Auth::user()->middlename." ". Auth::user()->lastname .'.pdf');
+    }
 }
+
+

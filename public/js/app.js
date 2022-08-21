@@ -3852,6 +3852,250 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/Transcript.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/Transcript.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      allRegisterCourse: '',
+      allResults: [],
+      resultArray: [],
+      gpa: {}
+    };
+  },
+  methods: {
+    fetchResults: function fetchResults() {
+      var _this = this;
+
+      this.resultArray = [];
+      axios.get('transcript-check-result').then(function (response) {
+        var _response = response.data;
+
+        if (_response.status === 0) {
+          _this.allRegisterCourse = _response.data;
+
+          _this.allRegisterCourse.forEach(function (register) {
+            // this.allResults.push(register);
+            // this.rsession = register.session.name
+            // this.rsemester = register.semester.name
+            // this.rlevel = register.level.name
+            // // console.log(this.rlevel);
+            var allResult = JSON.parse(register.results);
+            allResult.forEach(function (entry) {
+              // console.log(entry.semester.name);
+              //    var result = register.id;
+              //    console.log(result);
+              // this.resultArray = this.resultArray[result];
+              // console.log(this.resultArray);
+              var secondEntry = entry; //    console.log(secondEntry);
+              //    result.status = entry.status;
+              //    entry.results = JSON.parse(entry.results);
+              //    /*calculating the grade*/
+              //    result.forEach(secondEntry => {
+
+              secondEntry.total = parseInt(secondEntry.C_A) + parseInt(secondEntry.Exam);
+
+              if (secondEntry.total >= 70) {
+                secondEntry.grade = 'A';
+                secondEntry.points = 5;
+              } else if (secondEntry.total < 70 && secondEntry.total >= 60) {
+                secondEntry.grade = 'B';
+                secondEntry.points = 4;
+              } else if (secondEntry.total < 60 && secondEntry.total >= 50) {
+                secondEntry.grade = 'C';
+                secondEntry.points = 3;
+              } else if (secondEntry.total < 50 && secondEntry.total >= 40) {
+                secondEntry.grade = 'D';
+                secondEntry.points = 0;
+              } else if (secondEntry.total < 40) {
+                secondEntry.grade = 'F';
+                secondEntry.points = 0;
+              } //    console.log(secondEntry.grade);
+              // //     //    allCourses.forEach(courseEntry =>{
+              // //     //        if (courseEntry.id  == secondEntry.course_id.course_id){
+              // //     //            secondEntry.unit = courseEntry.unit;
+              // //     //            secondEntry.course_code = courseEntry.course_code;
+              // //     //        }
+              // //     //    })
+              //    })
+
+
+              _this.resultArray.push(secondEntry); // console.log(this.resultArray.length);
+
+            }); // console.log(this.allResults);
+            // console.log(register.id);
+
+            _this.allResults[register.id] = _this.resultArray; //[2,3,4,5];
+            // [(this.resultArray)];
+            // console.log(this.allResults);
+          });
+
+          _this.allResults.forEach(function (ell) {
+            // console.log(ell[0]);
+            ell.forEach(function (hi) {
+              console.log(hi.course_reg_id);
+            });
+          });
+        }
+      });
+    } //  fetchLevel(){
+    //     axios.get('/get-level')
+    //         .then(response => {
+    //             var _response = response.data;
+    //             if(_response.status === 0){
+    //                 this.level = _response.data;
+    //             }
+    //         })
+    // },
+    // getAuthUser(){
+    //     axios.get('/auth')
+    //         .then(response => {
+    //             var _response = response.data;
+    //             if (_response.status === 0){
+    //                 this.authUser = _response.data;
+    //             }
+    //         })
+    // },
+    // fetchSessions() {
+    //     axios.get('/student/course-registration-session')
+    //         .then(response => {
+    //             var _response = response.data;
+    //             if (_response.status === 0) {
+    //                 this.sessions = _response.data;
+    //             }
+    //         })
+    // },
+    // getSemester(){
+    //     axios.get('/get-semester')
+    //         .then(response => {
+    //             var _response = response.data;
+    //             if(_response.status === 0){
+    //                 this.semesters =  _response.data;
+    //             }
+    //         })
+    // },
+    // getAllCourses(){
+    //     axios.get('/course/view')
+    //         .then(response => {
+    //             var _response = response.data;
+    //             if (_response.status === 0){
+    //                 this.allCourseInfo = _response.data;
+    //             }
+    //         })
+    // },
+    // fetchStudents(){
+    //     axios.get('/student/view')
+    //         .then(response => {
+    //             var _response = response.data;
+    //             if(_response.status === 0){
+    //                 this.students = _response.data;
+    //             }
+    //         })
+    // },
+    // viewResult(student_id){
+    //     this.calculateCGPA(student_id);
+    //     this.selectedStudentId = student_id;
+    //     this.showResult = !this.showResult;
+    // },
+    // print(){
+    //     var prtContent = document.getElementById("printMe");
+    //     var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+    //     WinPrint.document.write(prtContent.innerHTML);
+    //     WinPrint.document.close();
+    //     WinPrint.focus();
+    //     WinPrint.print();
+    //     WinPrint.close();
+    // },
+    // pdf(){
+    //     var data = {
+    //         result : this.resultArray,
+    //         student_id: this.selectedStudentId,
+    //         gpa: this.gpa
+    //     }
+    //     axios.get('/result/pdf/make', {
+    //         params:{
+    //             result : this.resultArray,
+    //             student_id: this.selectedStudentId,
+    //             gpa: this.gpa
+    //         }
+    //     });
+    // },
+    // calculateCGPA (student_id){
+    //     var totalUnits = 0.0;
+    //     var gradePoints = 0.0;
+    //     var  gpa = 0.0;
+    //     this.gpa = {};
+    //    /* var student_id = '';*/
+    //     this.resultArray.forEach(entry =>{
+    //         entry.forEach(subEntry => {
+    //             if(subEntry.student_id == student_id){;
+    //                 var v1 = parseInt(subEntry.unit);
+    //                 var v2 = parseInt(subEntry.points);
+    //                 totalUnits += parseInt(subEntry.unit);
+    //                 var points = v1 * v2;
+    //                 gradePoints += points
+    //             }
+    //         })
+    //         gpa = gradePoints / totalUnits;
+    //     })
+    //     this.gpa.totalGradePoints = gradePoints;
+    //     this.gpa.totalUnits = totalUnits;
+    //     this.gpa.gpa = gpa;
+    //     this.gpa.student_id = student_id;
+    // },
+    // approveResult(result){
+    //     console.log(result.id);
+    // },
+    // printTemplate(student_id){
+    // },
+
+    /*update(course){
+        axios.post('/course/edit', course)
+            .then(response => {
+                this.fetchView();
+                this.$notify({type: 'success', text: 'Course update successful', speed:400});
+            })
+            .catch(error =>{
+                this.$notify({type: 'error', text: '<span style="color: white">Updating course. unsuccessfully. Try again later</span>', speed:400});
+            })
+    }*/
+
+  },
+  mounted: function mounted() {
+    // this.getAuthUser();
+    this.fetchResults(); // this.getAllCourses();
+    // this.fetchSessions();
+    // this.getSemester();
+  } // watch: {
+  //     year() {
+  //         if (this.semester) {
+  //             this.fetchStudents();
+  //             this.getAllCourses();
+  //             this.fetchResults();
+  //         }
+  //     },
+  //     semester() {
+  //         if(this.year){
+  //             this.fetchStudents();
+  //             this.getAllCourses();
+  //             this.fetchResults();
+  //         }
+  //     }
+  // }
+
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/ViewResult.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/ViewResult.vue?vue&type=script&lang=js& ***!
@@ -9616,6 +9860,141 @@ render._withStripped = true;
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/Transcript.vue?vue&type=template&id=20986666&":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/Transcript.vue?vue&type=template&id=20986666& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("notifications", {
+    attrs: {
+      position: "center"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "col-md-12 col-sm-12"
+  }, [_c("div", {
+    staticClass: "card card-box"
+  }, [_vm._m(0), _vm._v(" "), _vm._l(_vm.allRegisterCourse, function (allResult) {
+    return _c("div", {
+      staticClass: "card-body",
+      attrs: {
+        id: "bar-parent"
+      }
+    }, [_c("div", {
+      staticClass: "col-md-12"
+    }, [_c("table", {
+      staticClass: "tbl-typical col-md-4"
+    }), _vm._v(" "), _c("div", {
+      staticClass: "table-scrollable"
+    }, [_c("div", {
+      attrs: {
+        id: "printMe"
+      }
+    }, [_c("span", [_c("h4", [_c("strong", [_c("h5", [_vm._v("Level: " + _vm._s(allResult.level.name))]), _vm._v(" "), _c("h5", [_vm._v("Semester: ")]), _vm._v(" " + _vm._s(allResult.semester.name) + "\n                                    "), _c("h5", [_vm._v("Session: ")]), _vm._v(" " + _vm._s(allResult.session.name) + "\n                                    ")])])]), _vm._v(" "), _c("table", {
+      staticClass: "table table-striped table-bordered table-hover table-checkable order-column valign-middle"
+    }, [_vm._m(1, true), _vm._v(" "), _c("tbody", [_vm._v("\n                                id " + _vm._s(allResult.id) + "\n                                "), _vm._l(_vm.allResults[allResult.id], function (result) {
+      return _c("tr", [_c("td", {
+        attrs: {
+          align: "center"
+        }
+      }, [_vm._v(_vm._s(result.course_code))]), _vm._v(" "), _c("td", {
+        attrs: {
+          align: "center"
+        }
+      }, [_vm._v(_vm._s(result.unit))]), _vm._v(" "), _c("td", {
+        attrs: {
+          align: "center"
+        }
+      }, [_vm._v(_vm._s(result.C_A))]), _vm._v(" "), _c("td", {
+        attrs: {
+          align: "center"
+        }
+      }, [_vm._v(_vm._s(result.Exam))]), _vm._v(" "), _c("td", {
+        attrs: {
+          align: "center"
+        }
+      }, [_vm._v(_vm._s(result.total))]), _vm._v(" "), _c("td", {
+        attrs: {
+          align: "center"
+        }
+      }, [_vm._v(_vm._s(result.grade))])]);
+    })], 2), _vm._v(" "), _c("tbody", [_c("tr", [_c("th", {
+      attrs: {
+        align: "center",
+        colspan: "2"
+      }
+    }, [_vm._v("Total Grade Points: " + _vm._s(_vm.gpa.totalGradePoints))]), _vm._v(" "), _c("th", {
+      attrs: {
+        align: "center",
+        colspan: "2"
+      }
+    }, [_vm._v("Total Units: " + _vm._s(_vm.gpa.totalUnits))]), _vm._v(" "), _c("th", {
+      attrs: {
+        align: "center",
+        colspan: "2"
+      }
+    }, [_vm._v("GPA: " + _vm._s(_vm.gpa.gpa))])])])])]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", {
+      staticStyle: {
+        "float": "right"
+      }
+    })])])]);
+  })], 2)])], 1);
+};
+
+var staticRenderFns = [function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "card-head"
+  }, [_c("header", [_vm._v("All Results")])]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("thead", [_c("tr", [_c("th", {
+    attrs: {
+      align: "center"
+    }
+  }, [_vm._v("Course Code")]), _vm._v(" "), _c("th", {
+    attrs: {
+      align: "center"
+    }
+  }, [_vm._v("Unit")]), _vm._v(" "), _c("th", {
+    attrs: {
+      align: "center"
+    }
+  }, [_vm._v("C.A")]), _vm._v(" "), _c("th", {
+    attrs: {
+      align: "center"
+    }
+  }, [_vm._v("Exam")]), _vm._v(" "), _c("th", {
+    attrs: {
+      align: "center"
+    }
+  }, [_vm._v("Total")]), _vm._v(" "), _c("th", {
+    attrs: {
+      align: "center"
+    }
+  }, [_vm._v("Grade")])])]);
+}];
+render._withStripped = true;
+
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/ViewResult.vue?vue&type=template&id=637377d2&":
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/ViewResult.vue?vue&type=template&id=637377d2& ***!
@@ -13080,6 +13459,7 @@ Vue.component('create-result', (__webpack_require__(/*! ./components/results/cre
 Vue.component('view-result', (__webpack_require__(/*! ./components/results/ViewResult.vue */ "./resources/assets/js/components/results/ViewResult.vue")["default"]));
 Vue.component('edit-result', (__webpack_require__(/*! ./components/results/EditResult.vue */ "./resources/assets/js/components/results/EditResult.vue")["default"]));
 Vue.component('student-view-result', (__webpack_require__(/*! ./components/results/ViewResultForStudent.vue */ "./resources/assets/js/components/results/ViewResultForStudent.vue")["default"]));
+Vue.component('transcript-view', (__webpack_require__(/*! ./components/results/Transcript.vue */ "./resources/assets/js/components/results/Transcript.vue")["default"]));
 Vue.component('view-professors', (__webpack_require__(/*! ./components/professors/ViewProfessors.vue */ "./resources/assets/js/components/professors/ViewProfessors.vue")["default"]));
 Vue.component('add-professor', (__webpack_require__(/*! ./components/professors/CreateProfessor.vue */ "./resources/assets/js/components/professors/CreateProfessor.vue")["default"]));
 Vue.component('edit-professors', (__webpack_require__(/*! ./components/professors/EditProfessor.vue */ "./resources/assets/js/components/professors/EditProfessor.vue")["default"]));
@@ -47297,6 +47677,45 @@ component.options.__file = "resources/assets/js/components/results/EditResult.vu
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/results/Transcript.vue":
+/*!***************************************************************!*\
+  !*** ./resources/assets/js/components/results/Transcript.vue ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Transcript_vue_vue_type_template_id_20986666___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Transcript.vue?vue&type=template&id=20986666& */ "./resources/assets/js/components/results/Transcript.vue?vue&type=template&id=20986666&");
+/* harmony import */ var _Transcript_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Transcript.vue?vue&type=script&lang=js& */ "./resources/assets/js/components/results/Transcript.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Transcript_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Transcript_vue_vue_type_template_id_20986666___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Transcript_vue_vue_type_template_id_20986666___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/assets/js/components/results/Transcript.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/results/ViewResult.vue":
 /*!***************************************************************!*\
   !*** ./resources/assets/js/components/results/ViewResult.vue ***!
@@ -48099,6 +48518,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/results/Transcript.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/assets/js/components/results/Transcript.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Transcript_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Transcript.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/Transcript.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Transcript_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/results/ViewResult.vue?vue&type=script&lang=js&":
 /*!****************************************************************************************!*\
   !*** ./resources/assets/js/components/results/ViewResult.vue?vue&type=script&lang=js& ***!
@@ -48591,6 +49026,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditResult_vue_vue_type_template_id_1b4270f7___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_EditResult_vue_vue_type_template_id_1b4270f7___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditResult.vue?vue&type=template&id=1b4270f7& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/EditResult.vue?vue&type=template&id=1b4270f7&");
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/results/Transcript.vue?vue&type=template&id=20986666&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/assets/js/components/results/Transcript.vue?vue&type=template&id=20986666& ***!
+  \**********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Transcript_vue_vue_type_template_id_20986666___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Transcript_vue_vue_type_template_id_20986666___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Transcript_vue_vue_type_template_id_20986666___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Transcript.vue?vue&type=template&id=20986666& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/assets/js/components/results/Transcript.vue?vue&type=template&id=20986666&");
 
 
 /***/ }),

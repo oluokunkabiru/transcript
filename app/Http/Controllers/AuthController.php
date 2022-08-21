@@ -75,7 +75,7 @@ class AuthController extends Controller
     public function postLogin(Request $request, UserSetting $userSetting)
     {
         $data = $request->all();
-        // try{
+        try{
             if (auth()->attempt(['email' => $data['email'], 'password' => $data['password'], 'is_active' => true])) {
                 
                 // return auth()->user()->user_type;
@@ -102,12 +102,12 @@ class AuthController extends Controller
                     return 'Professor';
                 }
             }
-        //     return redirect()->back()->with('error', 'Identification No and Password Combination Incorrect')->withInput();
-        // } catch (\Exception $e)
-        // {
-        //     /*Send us a mail */
-        //     return redirect()->back()->with('error', 'Could not sign you in at the moment. Please try again...');
-        // }
+            return redirect()->back()->with('error', 'Invalid Email or Password Combination Incorrect')->withInput();
+        } catch (\Exception $e)
+        {
+            /*Send us a mail */
+            return redirect()->back()->with('error', 'Could not sign you in at the moment. Please try again...');
+        }
     }
 
     public function logout()

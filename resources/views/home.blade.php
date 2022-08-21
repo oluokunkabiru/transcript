@@ -115,7 +115,7 @@
             @foreach($data['courses'] as $courses)
                 <div class="col-lg-3 col-md-6 col-12 col-sm-6">
                     <div class="blogThumb">
-                        <div class="thumb-center"><img class="img-responsive" alt="user" src="../assets/img/course/course1.jpg"></div>
+                        {{-- <div class="thumb-center"><img class="img-responsive" alt="user" src="../assets/img/course/course1.jpg"></div> --}}
                         <div class="course-box">
                             <h4>{{$courses['name']}}</h4>
                             {{-- <div class="text-muted">

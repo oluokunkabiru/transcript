@@ -7,26 +7,24 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>RMS</title>
 
-    <link href="/img/favicon.144x144.html" rel="apple-touch-icon" type="image/png" sizes="144x144">
-    <link href="/img/favicon.114x114.html" rel="apple-touch-icon" type="image/png" sizes="114x114">
-    <link href="/img/favicon.72x72.html" rel="apple-touch-icon" type="image/png" sizes="72x72">
-    <link href="/img/favicon.57x57.html" rel="apple-touch-icon" type="image/png">
-    <link href="/img/favicon.html" rel="icon" type="image/png">
-    <link href="/img/favicon-2.html" rel="shortcut icon">
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" href="/css/lobipanel/lobipanel.min.css">
-    <link rel="stylesheet" href="/css/vendor/lobipanel.min.css">
-    <link rel="stylesheet" href="/css/jqueryui/jquery-ui.min.css">
-    <link rel="stylesheet" href="/css/pages/widgets.min.css">
-    <link rel="stylesheet" href="/css/font-awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/lobipanel/lobipanel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/vendor/lobipanel.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/jqueryui/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/pages/widgets.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/font-awesome.min.css')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css')}}">
+    <link rel="shortcut icon" href="{{ asset('img/logo-2-mob.png') }}" type="image/x-icon">
+
+    @yield("style")
 </head>
 <body class="with-side-menu control-panel control-panel-compact">
 
@@ -34,7 +32,7 @@
         <div class="container-fluid">
             <a href="" class="site-logo">
                 {{--<img class="hidden-md-down" src="img/logo-2.png" alt="">--}}
-                <img class="hidden-lg-down" src="/img/logo-2-mob.png" alt="">
+                <img class="hidden-lg-down" src="{{ asset('img/logo-2-mob.png') }}" alt="">
                 <a href="{{route('student.home')}}" class="link">Home</a>
             </a>
 
@@ -88,13 +86,16 @@
                     Result
                 </a>
             </li>
-
+            @if (Auth::user()->checkPay() !=NULL)
+                
+           
             <li class="dropdown">
-                <a href="{{route('student-view-result')}}">
+                <a href="{{route('transcript-check')}}">
                     <i class="tag-color pink"></i>
                     Result Transcript
                 </a>
             </li>
+             @endif
 
            
 

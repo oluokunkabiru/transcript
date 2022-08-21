@@ -195,7 +195,7 @@
                     if (_response.status === 0) {
 
                         this.sessions = _response.data;
-                        console.log("hello");
+                        // console.log("hello");
 
                     }
                 })

@@ -52,7 +52,7 @@ class Result extends Model
 
         if(!isset($data['status']))
         {
-            $data['status'] = 0;
+            $data['status'] = 1;
         }
 
         
@@ -62,7 +62,7 @@ class Result extends Model
                     ->update([
                                 'results' => $data['results'],
                                 'staff_id' => $data['staff_id'],
-                                'status' => $data['status'],
+                                'status' => 1,//$data['status'],
                             ]);
     }
 
@@ -93,6 +93,70 @@ class Result extends Model
     public function semester(){
         return $this->belongsTo(Semester::class, 'semester', 'id');
     }
+
+    public function myClass($cgpa){
+        $class = "";
+        if($cgpa >=4.5 && $cgpa <=5){
+            $class = "First Class";
+        }elseif($cgpa >=3.5 && $cgpa <=4.499){
+            $class = "Second Class Upper";
+        }elseif($cgpa >=2.5 && $cgpa <= 3.999){
+            $class = "Second Class Lower";
+        }elseif($cgpa >= 1.5 && $cgpa <= 2.49999){
+            $class = "Third Class";
+        }else{
+            $class = "Pass";
+        }
+        return $class;
+    }
+    
+    public function grade($score){
+        $grade = "F";
+        if ($score >=70 && $score <= 100) {
+            $grade = "A";
+        } elseif ($score >=60 && $score < 70) {
+            $grade = "B";
+        }elseif ($score >=50 && $score < 60) {
+            $grade = "C";
+        }elseif ($score >=45 && $score < 50) {
+            $grade = "D";
+        }elseif ($score >=40 && $score < 45) {
+            $grade = "E";
+        }else {
+            $grade = "F";
+        }
+        return $grade ;
+    }
+
+    
+
+    public function point($grade){
+
+        $points = 0;
+        if ($grade=="A") {
+            $points =5;
+        } elseif($grade=="B") {
+            $points=4;
+        }elseif($grade=="C") {
+            $points=3;
+        }elseif($grade=="D") {
+            $points=2;
+        }elseif($grade=="E") {
+            $points=1;
+        }else{
+            $points=0;
+        }
+        return $points;
+    }
+
+    public function sem(){
+        return $this->belongsTo(Semester::class, 'semester', 'id');
+    }
+
+public function getCourse($id){
+    $course = Course::where('id', $id)->first();
+    return $course;
+}
 
     public function level(){
         return $this->belongsTo(Level::class);
@@ -131,7 +195,7 @@ class Result extends Model
         ->where('year', $data['year'])
         
         // ->where('student_id', Auth::user()->id)
-        ->where('status', 1)
+        //->where('status', 1)
             ->get();
 
         return $results;
