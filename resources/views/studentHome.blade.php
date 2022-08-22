@@ -24,9 +24,7 @@
                                 <div><p><i class="fa fa-phone"></i><a href="tel{{ Auth::user()->tel_no }}">{{ Auth::user()->tel_no }}</a></p> </div>
                                 <div><p><i class=""></i>  {{Auth::user()->matric_no}}</p> </div>
                                     
-                                <div class="profile-userbuttons">
-                                    <a href="#" class="btn btn-circle deepPink-bgcolor btn-sm">Read More</a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
