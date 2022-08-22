@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Department;
+use App\Level;
+use App\Semester;
 use App\Student;
 use App\User;
 use App\UserSetting;
@@ -98,5 +100,26 @@ class HomeController extends Controller
     {
         return apiSuccess(auth()->user());
     }
+
+    public function getLevelData(){
+        $level = Level::get();
+        // $level = Semester::get();
+        $responder = config('app.apiResponse');
+        $responder['status'] = 0;
+        $responder['message'] = "Session Updated Successfully";
+        $responder['data'] = $level;
+        return response()->json($responder);
+        }
+
+    public function getSemesterData(){
+        $level = Semester::orderBy('name')->get();
+        $responder = config('app.apiResponse');
+        $responder['status'] = 0;
+        $responder['message'] = "Session Updated Successfully";
+        $responder['data'] = $level;
+        return response()->json($responder);
+    }
+
+
 
 }
