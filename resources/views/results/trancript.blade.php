@@ -44,7 +44,7 @@
                             <header>All Results</header>
                         </div>
                         {{-- {{ dd(Auth::user()->checkPay()) }} --}}
-        
+                        
                         <div class= "card-body" for="allResult in allRegisterCourse" id="bar-parent">
                             <div class="col-md-12">
                                
@@ -52,6 +52,14 @@
                                 <div  class="table-scrollable">
                                     <div id="printMe">
                                             <div class="row">
+                                                <div class="col-md-12">
+                                                    <hr>
+                                                    <h1 class="text-center font-weight-bold">OSUN STATE UNIVERSITY, OSOGBO</h1> 
+                                                    <hr>
+                                                    <h3 class="text-center  font-weight-bold">ACADEMIC AFFAIRS UNIT</h3>
+                                                    <h3 class="text-center  font-weight-bold">EXAMINATION & RECORDS OFFICE
+                                    
+                                                </div>
                                                 <div class="col-9">
                                                     <div class="row">
                                                         <div class="col-5">

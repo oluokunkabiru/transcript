@@ -4,7 +4,7 @@
     <div id="app">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="card card-box">
                         <div class="card-body no-padding ">
                             <div class="doctor-profile">
